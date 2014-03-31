@@ -1,0 +1,210 @@
+/*
+This file is part of regular.
+regular is Copyright 2013 Jonathan Eberle & Cluster-AG Leinger-Gymnasium Grünstadt regular is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+regular is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with regular. See the file LICENSE. If not, see http://www.gnu.org/licenses/.
+*/
+
+@font-face {
+  font-family:PosterBodoni BT;
+  src: url(posterbodonibt.ttf);
+}
+
+body {
+  background:#FFF;
+  margin:0;
+}
+
+#vertretungsplan {
+  background:#d5d5d5;
+}
+
+#date {
+  text-align:center;
+  padding-top:1%;
+}
+
+table {
+  width:100%;
+  padding:1%;
+}
+
+td {
+  outline:1px solid;
+}
+
+#main {
+  margin:0 auto;
+  width:90%;
+}
+
+#top {
+  overflow:hidden;
+  background:#17c200;  /* is ne billiglösung */
+}
+
+#headline {
+  background:#193058;
+  padding:1.5em 2em 1em 10%;
+  max-height:77.7777778%;
+}
+
+#headline img {
+  float:left;  
+  margin:auto;
+  margin-top:-1em;
+  max-width:10%;
+  max-height:4em;
+}
+
+h1 {
+  font-family:PosterBodoni BT;
+  font-size:3em;
+  font-weight:normal;
+  line-height:1;
+  color:#FFF;
+  margin:0;
+}
+
+#nav {
+  min-height:1em;
+}
+
+#mainnav {
+  padding:0 1em;
+  margin:0;
+  list-style:none;
+}
+
+.mainnavitem {
+  float:left;
+  padding-right:3em;
+  background:/*#57E542*/#17c200;
+}
+
+#currentmainnavitem {
+  background:/*#FF0000*/#36ff1b;
+}
+
+#activemainnavitem {
+  background:/*#FFFFFF*/#9eff91;
+}
+
+.subnav {
+  display:none;
+  position:absolute;
+  background:#808080;
+}
+
+.mainnavitem:hover .subnav {
+  display:block;
+}
+
+.subnavitem {
+  list-style:none;
+}
+
+.subnavitem:hover{
+  background:#b2b2b2;
+}
+
+#currentsubnavitem{
+  background:#b2b2b2;
+}
+
+#bodycopy {
+  margin:0 auto;
+  width:100%;
+}
+
+#content {
+  background:#BBF9FF;
+  min-width:150px;
+  width:74.4047619%;
+  float:right;
+  color:#000;
+}
+
+.image {
+  max-width:40%;
+  float:right;
+  margin:2em;
+}
+
+.image img {
+  max-width:100%;
+}
+
+.image figcaption {
+}
+
+#side {
+  background:#868786;
+  min-width:90px;
+  width:25.5952381%;
+  float:left;
+  color:#FFF;
+}
+
+#footer {
+  background:#AAA;
+  margin:0;
+  clear:both;
+}
+
+#footernav {
+}
+
+#footernavlist {
+  margin:0;
+}
+
+.footernavitem {
+   }
+
+@media screen and (max-width:440px) {      /*point at which floats break*/
+  #main {
+    margin:0 auto;
+    width:90%;
+  }
+
+  #content {
+    margin:auto;
+    float:none;
+    width:100%;
+  }
+
+  #side {
+    margin:auto;
+    float:none;
+    width:100%;
+  }
+
+}
+
+@media screen and (max-width:684px) {      /*point at which title would break into two lines */
+  #headline {
+    padding:0.5em;
+  }
+
+  #headline img {
+    margin-top:-0.5em;
+  }
+}
+
+@media screen and (max-width:624px) {
+  #headline img{
+    margin:0;
+    max-width:50%;
+    max-height:6em;
+  }
+}
+
+@media screen and (max-width:550px) {
+  h1 {
+    font-size:2.5em;
+  }
+  #headline img{
+    display:none;
+  }
+}
