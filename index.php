@@ -25,7 +25,7 @@ $hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
 echo($hash_query);
 $hash = $database->query($hash_query);
 
-echo($hash);
+echo($hash->fetch_field());
 
 $logged_in = password_verify($password, $hash);
 
