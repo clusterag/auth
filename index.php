@@ -1,5 +1,8 @@
 <?php
 
+$login_template = file_get_contents("login.html");
+echo($login_template);
+
 $username = $_POST["username"];  //Benutzer
 $password = $_POST["password"];  //Passwort
 
