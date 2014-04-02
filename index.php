@@ -3,7 +3,7 @@
 $username = $_POST["username"];  //Benutzer
 $password = $_POST["password"];  //Passwort
 
-$dbp = "sGN59LNdKJJScrTK"  // passwort der Datenbank
+$dbp = "sGN59LNdKJJScrTK";  // passwort der Datenbank
 
 $database = new mysqli("db521844234.db.1and1.com", "dbo521844234", $dbp, "db521844234" );  //connect to database
 
