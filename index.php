@@ -15,6 +15,7 @@ $logged_in = password_verify($password, $hash);
 if ($logged_in = True) {
 	//redirect
 	echo "True";
+	echo($logged_in);
 };
 
 ?>
