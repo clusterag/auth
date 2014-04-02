@@ -27,7 +27,7 @@ $hash = mysqli_fetch_assoc($database->query($hash_query));
 
 echo ($hash["username"]);
 
-echo($hash->fetch_field());
+//echo($hash->fetch_field());
 
 $logged_in = password_verify($password, $hash);
 
