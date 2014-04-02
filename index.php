@@ -25,7 +25,7 @@ $hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
 echo($hash_query);
 $hash = mysqli_fetch_assoc($database->query($hash_query));
 
-echo ($hash["username"]);
+echo ($hash["PW"]);
 
 //echo($hash->fetch_field());
 
