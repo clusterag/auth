@@ -44,7 +44,7 @@ $hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
 $_SESSION["logged_in"] = password_verify($password, $hash);
 
 if ($_SESSION["logged_in"]) {
-	http_redirect("index.php", array("pid" => "0"), true);
+	HttpResponse::redirect("index.php", array("pid" => "0"), true);
 }
 else {
 	echo("False");
