@@ -14,8 +14,8 @@ if ($_SESSION["logged_in"]){
 
 	elseif (basename($_SERVER["REQUEST_URI"]) = "morgen.html" ) {
 		echo (file_get_contents($morgen));
-	}
-}
+	};
+};
 
 session_start();
 
