@@ -12,8 +12,9 @@ $hash = $database->query($hash_query);
 
 $logged_in = password_verify($password, $hash);
 
-if $logged_in{
+if $logged_in = True {
 	//redirect
+	echo "True";
 }
 
 ?>
