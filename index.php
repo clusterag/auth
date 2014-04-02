@@ -23,11 +23,8 @@ $database = new mysqli("db521844234.db.1and1.com", "dbo521844234", $dbp, "db5218
 
 $hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
 echo($hash_query);
-$hash = mysqli_fetch_assoc($database->query($hash_query));
+$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
 
-echo ($hash["PW"]);
-
-//echo($hash->fetch_field());
 
 $logged_in = password_verify($password, $hash);
 
