@@ -8,11 +8,11 @@ $heute = $root . "output/heute.html";
 $morgen = $root .  "output/morgen.html";
 
 if ($_SESSION["logged_in"]){
-	if (basename($_SERVER["REQUEST_URI"]) == "heute.html" ) {
+	if ($_GET["pid"]) == "0" ) {
 		echo (file_get_contents($heute));
 	}
 
-	elseif (basename($_SERVER["REQUEST_URI"]) == "morgen.html" ) {
+	elseif ($_GET["pid"]) == "1" ) {
 		echo (file_get_contents($morgen));
 	};
 };
