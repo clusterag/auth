@@ -1,8 +1,23 @@
 <?php
 //CONF
-$login_template_path = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/auth/login.html";
+$root = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/";
+$login_template_path = "auth/login.html";
 $dbp = "sGN59LNdKJJScrTK";  // passwort der Datenbank
 $error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
+$heute = $root . "output/heute.html";
+$morgen = $root .  "output/morgen.html";
+
+if ($_SESSION["logged_in"]){
+	if (basename($_SERVER["REQUEST_URI"]) = "heute.html" ) {
+		echo (file_get_contents($heute));
+	}
+
+	elseif (basename($_SERVER["REQUEST_URI"]) = "morgen.html" ) {
+		echo (file_get_contents($morgen));
+	}
+}
+
+session_start();
 
 $login_template = file_get_contents($login_template_path);
 $username = $_POST["username"];  //Benutzer
@@ -22,16 +37,15 @@ else {
 $database = new mysqli("db521844234.db.1and1.com", "dbo521844234", $dbp, "db521844234" );  //connect to database
 
 $hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
-echo($hash_query);
+// echo($hash_query);
 $hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
 
 
-$logged_in = password_verify($password, $hash);
+$_SESSION["logged_in"] = password_verify($password, $hash);
 
-if ($logged_in) {
+if ($_SESSION["logged_in"]) {
 	//redirect
 	echo("True");
-	echo($logged_in);
 }
 else {
 	echo("False");
