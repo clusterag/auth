@@ -7,15 +7,15 @@ $error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen 
 $heute = $root . "output/heute.html";
 $morgen = $root .  "output/morgen.html";
 
-if ($_SESSION["logged_in"]){
-	if ($_GET["pid"]) == "0" ) {
-		echo (file_get_contents($heute));
-	}
-
-	elseif ($_GET["pid"]) == "1" ) {
-		echo (file_get_contents($morgen));
-	};
-};
+//if ($_SESSION["logged_in"]){
+//	if ($_GET["pid"] == "0" ) {
+//		echo (file_get_contents($heute));
+//	}
+//
+//	elseif ($_GET["pid"]) == "1" ) {
+//		echo (file_get_contents($morgen));
+//	};
+//};
 
 session_start();
 
