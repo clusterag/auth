@@ -1,6 +1,6 @@
 <?php
 
-$login_template = file_get_contents("login.html");
+$login_template = file_get_contents("/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/auth/login.html");
 echo($login_template);
 
 $username = $_POST["username"];  //Benutzer
