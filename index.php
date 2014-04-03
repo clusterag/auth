@@ -1,6 +1,8 @@
 <?php
 //CONF
-$root = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/";
+$lgroot = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/";
+$sabitumroot = "/home/coalaber/html/";
+$root = $sabitumroot;
 $login_template_path = $root . "auth/login.html";
 $dbp = "sGN59LNdKJJScrTK";  // passwort der Datenbank
 $error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
@@ -19,7 +21,7 @@ $morgen = $root .  "output/morgen.html";
 
 session_start();
 
-$login_template = file_get_contents($login_template_path);
+
 $username = $_POST["username"];  //Benutzer
 $password = $_POST["password"];  //Passwort
 
@@ -39,6 +41,7 @@ if ($_SESSION["logged_in"]) {
 	echo (file_get_contents($heute));
 }
 else {
+	$login_template = file_get_contents($login_template_path);
 	//if a username has been posted, i.e. user is trying to login
 	if (isset($username)) {
 		echo($error_not_logged_in);
