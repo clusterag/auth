@@ -1,6 +1,6 @@
 <?php
 //CONF
-$root = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/";
+$root = "/home/coalaber/html/";
 $login_template_path = $root . "auth/login.html";
 $dbp = "sGN59LNdKJJScrTK";  // passwort der Datenbank
 $error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
