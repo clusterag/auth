@@ -52,6 +52,7 @@ function check_login(){
 		//getting POST parameters
 		$username = $_POST["username"];  //Benutzer
 		$password = $_POST["password"];  //Passwort
+		$login_template = file_get_contents($login_template_path);
 		
 		//if a username has been posted, i.e. user is trying to login
 		if (isset($username)) {
