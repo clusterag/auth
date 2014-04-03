@@ -19,7 +19,7 @@ $morgen = $root .  "output/morgen.html";
 
 session_start();
 
-$login_template = file_get_contents($login_template_path);
+
 $username = $_POST["username"];  //Benutzer
 $password = $_POST["password"];  //Passwort
 
