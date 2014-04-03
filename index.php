@@ -22,36 +22,42 @@ $morgen = $root .  "output/morgen.html";
 
 session_start();
 
-
-$username = $_POST["username"];  //Benutzer
-$password = $_POST["password"];  //Passwort
-
-
-
-
-$database = new mysqli("db521844234.db.1and1.com", "dbo521844234", $dbp, "db521844234" );  //connect to database
-
-$hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
-// echo($hash_query);
-$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
-
-
-$_SESSION["logged_in"] = password_verify($password, $hash);
-
-if ($_SESSION["logged_in"]) {
-	echo (file_get_contents($heute));
+if (isset($_SESSION["logged_in"])){
+	echo(file_get_contents($heute));
 }
 else {
-	$login_template = file_get_contents($login_template_path);
-	//if a username has been posted, i.e. user is trying to login
-	if (isset($username)) {
-		echo($error_not_logged_in);
-		echo($login_template);
+	$username = $_POST["username"];  //Benutzer
+	$password = $_POST["password"];  //Passwort
+	
+	
+	
+	
+	$database = new mysqli("db521844234.db.1and1.com", "dbo521844234", $dbp, "db521844234" );  //connect to database
+	
+	$hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
+	// echo($hash_query);
+	$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
+	
+	
+	$_SESSION["logged_in"] = password_verify($password, $hash);
+	
+	if ($_SESSION["logged_in"]) {
+		echo (file_get_contents($heute));
 	}
-	//if no username has been posted, i.e. user has not tried to login yet
 	else {
-		echo($login_template);
+		$login_template = file_get_contents($login_template_path);
+		//if a username has been posted, i.e. user is trying to login
+		if (isset($username)) {
+			echo($error_not_logged_in);
+			echo($login_template);
+		}
+		//if no username has been posted, i.e. user has not tried to login yet
+		else {
+			echo($login_template);
+		}
 	}
 }
+
+
 
 ?>
