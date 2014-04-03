@@ -77,7 +77,8 @@ function check_login(){
 }
 //check_login must be the first function called because it sets the session cookie which must be done before the http body starts
 if (check_login()) {
-	echo (file_get_contents($heute));
+	#echo (file_get_contents($heute));
+	echo("success");
 };
 
 ?>
