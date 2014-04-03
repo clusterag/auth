@@ -4,6 +4,7 @@ $lgroot = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/";
 $sabitumroot = "/home/coalaber/html/";
 $root = $sabitumroot;
 $login_template_path = $root . "auth/login.html";
+echo($login_template_path);
 $dbp = "sGN59LNdKJJScrTK";  // passwort der Datenbank
 $error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
 $heute = $root . "output/heute.html";
