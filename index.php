@@ -7,16 +7,6 @@ $error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen 
 $heute = $root . "output/heute.html";
 $morgen = $root .  "output/morgen.html";
 
-//if ($_SESSION["logged_in"]){
-//	if ($_GET["pid"] == "0" ) {
-//		echo (file_get_contents($heute));
-//	}
-//
-//	elseif ($_GET["pid"]) == "1" ) {
-//		echo (file_get_contents($morgen));
-//	};
-//};
-
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
@@ -29,7 +19,6 @@ function session_logged_in(){
 function check_password($username, $password, $dbp){
 	$database = new mysqli("db521844234.db.1and1.com", "dbo521844234", $dbp, "db521844234" );  //connect to database
 	$hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
-	// echo($hash_query);
 	$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
@@ -42,7 +31,6 @@ function check_login($login_template_path, $error_not_logged_in, $dbp){
 
 	session_set_cookie_params(300);
 	session_start();
-	echo($_SESSION["username"]);
 	//if session is logged in return True
 	if(session_logged_in()){
 		return True;
@@ -53,8 +41,6 @@ function check_login($login_template_path, $error_not_logged_in, $dbp){
 		$username = $_POST["username"];  //Benutzer
 		$password = $_POST["password"];  //Passwort
 		$login_template = file_get_contents($login_template_path);
-		#echo($login_template);
-		#echo($username);
 		//if a username has been posted, i.e. user is trying to login
 		if (isset($_POST["username"])) {
 			//checking password
@@ -86,9 +72,6 @@ if (check_login($login_template_path, $error_not_logged_in, $dbp)) {
 	else {
 		echo (file_get_contents($heute));
 	};
-	echo($_GET["pid"]);
-	echo("success");
-	echo($_SESSION["username"]);
 };
 
 ?>
