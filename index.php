@@ -2,8 +2,9 @@
 //CONF
 $root = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/";
 $login_template_path = $root . "auth/login.html";
+$logout_template_path = $root . "auth/logout.html";
 #$dbp = "";  // passwort der Datenbank
-$dbp = file_get_contents("dbp")
+$dbp = file_get_contents("dbp");
 $error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
 $heute = $root . "auth/heute.html";
 $morgen = $root .  "auth/morgen.html";
@@ -65,6 +66,7 @@ function login($login_template_path, $error_not_logged_in, $dbp){
 		};
 	};
 }
+
 //login must be the first function called because it sets the session cookie which must be done before the http body starts
 if (login($login_template_path, $error_not_logged_in, $dbp)) {
 	if($_GET["pid"] == 1){
@@ -73,6 +75,7 @@ if (login($login_template_path, $error_not_logged_in, $dbp)) {
 	else {
 		echo (file_get_contents($heute));
 	};
+	echo(file_get_contents($logout_template_path));
 };
 
 ?>
