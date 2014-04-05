@@ -12,3 +12,11 @@ in theory, sessions should work now
 but they don't
 at least not on sabitum
 we'll have to try it on lg.de
+
+
+short update log saturday:
+session support now working
+tried on lg.de
+added support for GET paramater (vertretungsplan.leiningergymnasium.de/index.php?pid=1) will echo tomorrow
+we'll just have to get the RewriteRules working
+I have a .htaccess on sabitum, i'll add it in the next commit
