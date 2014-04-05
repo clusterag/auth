@@ -25,3 +25,4 @@ the dbp should be changed as soon as possible, it was on here in plaintext
 added logout.php and logout.html
 logout functionality is provided by a link to logout.php
 logout.php calls session_destroy() and redirects to index.php
+either database is down or I messed something up with the password check, probably reading the dbp from file
