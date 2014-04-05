@@ -2,10 +2,11 @@
 //CONF
 $root = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/";
 $login_template_path = $root . "auth/login.html";
-$dbp = "sGN59LNdKJJScrTK";  // passwort der Datenbank
+#$dbp = "";  // passwort der Datenbank
+$dbp = file_get_contents("dbp")
 $error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
-$heute = $root . "output/heute.html";
-$morgen = $root .  "output/morgen.html";
+$heute = $root . "auth/heute.html";
+$morgen = $root .  "auth/morgen.html";
 
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
@@ -24,7 +25,7 @@ function check_password($username, $password, $dbp){
 	return $logged_in;
 }
 
-function check_login($login_template_path, $error_not_logged_in, $dbp){
+function login($login_template_path, $error_not_logged_in, $dbp){
 	//checks if the session is logged in
 	//if it is not, gets POST params and checks password
 	//if password is wrong or none given echoes login template
@@ -64,8 +65,8 @@ function check_login($login_template_path, $error_not_logged_in, $dbp){
 		};
 	};
 }
-//check_login must be the first function called because it sets the session cookie which must be done before the http body starts
-if (check_login($login_template_path, $error_not_logged_in, $dbp)) {
+//login must be the first function called because it sets the session cookie which must be done before the http body starts
+if (login($login_template_path, $error_not_logged_in, $dbp)) {
 	if($_GET["pid"] == 1){
 		echo (file_get_contents($morgen));
 	}
