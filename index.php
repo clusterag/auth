@@ -13,7 +13,7 @@ include $conf;
 #$heute = $root . "auth/heute.html";
 #$morgen = $root .  "auth/morgen.html";
 #$dbp = "sGN59LNdKJJScrTK";
-
+echo $root;
 
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
