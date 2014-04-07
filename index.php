@@ -3,17 +3,7 @@
 #$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php";
 $conf = "conf.php";
 include $conf;
-#$root = "";
-#$login_template_path = $root . "auth/login.html";
-#$logout_template_path = $root . "auth/logout.html";
-#$dbp = "";  // passwort der Datenbank
-#$dbp = file_get_contents($root . "dbp");
-#echo $root;
-#$error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
-#$heute = $root . "auth/heute.html";
-#$morgen = $root .  "auth/morgen.html";
-#$dbp = "sGN59LNdKJJScrTK";
-echo $root;
+
 
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
