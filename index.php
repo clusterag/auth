@@ -21,9 +21,7 @@ function session_logged_in(){
 function check_password($username, $password, $dbp){
 	$database = new mysqli("db521844234.db.1and1.com", "dbo521844234", $dbp, "db521844234" );  //connect to database
 	$hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
-
 	$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
-	echo $hash;
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
 }
