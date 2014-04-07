@@ -1,5 +1,5 @@
 <?php
-$root = getcwd();
+$root = getcwd() . "/";
 $login_template_path = $root . "auth/login.html";
 $logout_template_path = $root . "auth/logout.html";
 $dbp = "";  // passwort der Datenbank
