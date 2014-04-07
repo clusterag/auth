@@ -14,15 +14,16 @@ function session_logged_in(){
 	}
 }
 
-function check_password($username, $password, $dbhost, $dbuser, $dbp, $db_database){
-	$database = new mysqli($dbhost, $dbuser, $dbp, $db_database);  //connect to database
-	$hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
+function check_password($username, $password, $dbhost, $dbuser, $dbp, $db_database, $table){
+	$database = new mysqli($dbhost, $dbuser, $dbp, $db_database, $table);  //connect to database
+	echo($dbhost. $dbuser. $dbp. $db_database. $table);
+	$hash_query = "SELECT PW FROM " . $table . " WHERE UID = '" . $username . "'";
 	$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
 }
 
-function login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $dbp, $db_database){
+function login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $dbp, $db_database, $table){
 	//checks if the session is logged in
 	//if it is not, gets POST params and checks password
 	//if password is wrong or none given echoes login template
@@ -44,7 +45,7 @@ function login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $db
 		if (isset($_POST["username"])) {
 			//checking password
 			//if password is correct, set username in session to username, return true
-			if(check_password($username, $password, $dbhost, $dbuser, $dbp, $db_database)){
+			if(check_password($username, $password, $dbhost, $dbuser, $dbp, $db_database, $table)){
 				$_SESSION["username"] = $username;
 				$_SESSION["logged_in"] = 1;
 				return True;
@@ -65,7 +66,7 @@ function login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $db
 }
 
 //login must be the first function called because it sets the session cookie which must be done before the http body starts
-if (login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $dbp, $db_database)) {
+if (login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $dbp, $db_database, "users")) {
 	if($_GET["pid"] == 1){
 		echo (file_get_contents($morgen));
 	}
