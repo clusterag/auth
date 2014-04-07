@@ -1,6 +1,6 @@
 <?php
 //CONF
-$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php" ;
+$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php";
 include $conf;
 #$root = "";
 #$login_template_path = $root . "auth/login.html";
@@ -11,7 +11,7 @@ include $conf;
 #$error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
 #$heute = $root . "auth/heute.html";
 #$morgen = $root .  "auth/morgen.html";
-echo $login_template_path;
+echo $root;
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
