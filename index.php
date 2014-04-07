@@ -25,6 +25,10 @@ function session_logged_in(){
 }
 
 function check_password($username, $password, $dbhost, $dbuser, $dbp, $db_database){
+	echo $dbhost;
+	echo $dbuser;
+	echo $dbp;
+	echo $db_database;
 	$database = new mysqli($dbhost, $dbuser, $dbp, $db_database);  //connect to database
 	$hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
 	$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
