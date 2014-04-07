@@ -1,7 +1,7 @@
 <?php
 //CONF
 $conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php" ;
-
+include $conf;
 #$root = "";
 #$login_template_path = $root . "auth/login.html";
 #$logout_template_path = $root . "auth/logout.html";
