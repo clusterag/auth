@@ -11,7 +11,7 @@ include $conf;
 #$error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
 #$heute = $root . "auth/heute.html";
 #$morgen = $root .  "auth/morgen.html";
-
+echo $root;
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
