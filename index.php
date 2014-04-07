@@ -58,7 +58,7 @@ function login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $db
 		if (isset($_POST["username"])) {
 			//checking password
 			//if password is correct, set username in session to username, return true
-			if(check_password($username, $password, $dbp)){
+			if(check_password($username, $password, $dbhost, $dbuser, $dbp, $db_database)){
 				$_SESSION["username"] = $username;
 				$_SESSION["logged_in"] = 1;
 				return True;
