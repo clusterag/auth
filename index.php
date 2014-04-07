@@ -33,6 +33,7 @@ function login($login_template_path, $error_not_logged_in, $dbp){
 
 	session_set_cookie_params(300);
 	session_start();
+	echo $logout_template_path;
 	//if session is logged in return True
 	if(session_logged_in()){
 		return True;
