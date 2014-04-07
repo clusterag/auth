@@ -12,6 +12,10 @@ include $conf;
 #$heute = $root . "auth/heute.html";
 #$morgen = $root .  "auth/morgen.html";
 
+echo $dbhost;
+echo $dbuser;
+echo $db_database;
+
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
@@ -22,7 +26,7 @@ function session_logged_in(){
 }
 
 function check_password($username, $password, $dbp){
-	$database = new mysqli("db521844234.db.1and1.com", "dbo521844234", $dbp, "db521844234" );  //connect to database
+	$database = new mysqli($dbhost, $dbuser, $dbp, $db_database );  //connect to database
 	$hash_query = "SELECT PW FROM users WHERE UID = '" . $username . "'";
 	$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
 	$logged_in = password_verify($password, $hash);
