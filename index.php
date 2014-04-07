@@ -12,6 +12,8 @@ include $conf;
 #$heute = $root . "auth/heute.html";
 #$morgen = $root .  "auth/morgen.html";
 echo $root;
+$login_template = file_get_contents($login_template_path);
+echo($login_template);
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
