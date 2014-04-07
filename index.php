@@ -66,17 +66,14 @@ function login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $db
 }
 
 //login must be the first function called because it sets the session cookie which must be done before the http body starts
-if ($_SERVER["REQUEST_URI"] != "/admin.php")
-{
-	if (login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $dbp, $db_database, "users")) {
-		if($_GET["pid"] == 1){
-			echo (file_get_contents($morgen));
-		}
-		else {
-			echo (file_get_contents($heute));
-		};
-		echo(file_get_contents($logout_template_path));
+if (login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $dbp, $db_database, "users") && $_SERVER["REQUEST_URI"] != "/admin.php") {
+	if($_GET["pid"] == 1){
+		echo (file_get_contents($morgen));
+	}
+	else {
+		echo (file_get_contents($heute));
 	};
+	echo(file_get_contents($logout_template_path));
 };
 
 
