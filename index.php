@@ -8,9 +8,9 @@ include $conf;
 #$dbp = "";  // passwort der Datenbank
 #$dbp = file_get_contents($root . "dbp");
 echo $root;
-$error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
-$heute = $root . "auth/heute.html";
-$morgen = $root .  "auth/morgen.html";
+#$error_not_logged_in = "Benutzername oder Passwort sind falsch. Bitte versuchen Sie es erneut.";
+#$heute = $root . "auth/heute.html";
+#$morgen = $root .  "auth/morgen.html";
 
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
