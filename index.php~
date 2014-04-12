@@ -14,8 +14,8 @@ function session_logged_in(){
 	}
 }
 
-function check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table){
-	$database = new mysqli($db_host, $db_user, $db_password, $db_database);  //connect to database
+function check_password($username, $password, $dbhost, $dbuser, $dbp, $db_database, $table){
+	$database = new mysqli($dbhost, $dbuser, $dbp, $db_database);  //connect to database
 	
 	$hash_query = "SELECT PW FROM " . $table . " WHERE UID = '" . $username . "'";
 	$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
@@ -23,7 +23,7 @@ function check_password($username, $password, $db_host, $db_user, $db_password, 
 	return $logged_in;
 }
 
-function login($login_template_path, $error_not_logged_in, $db_host, $db_user, $db_password, $db_database, $table){
+function login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $dbp, $db_database, $table){
 	//checks if the session is logged in
 	//if it is not, gets POST params and checks password
 	//if password is wrong or none given echoes login template
@@ -40,12 +40,12 @@ function login($login_template_path, $error_not_logged_in, $db_host, $db_user, $
 		//getting POST parameters
 		$username = $_POST["username"];  //Benutzer
 		$password = $_POST["password"];  //Passwort
-//		$login_template = file_get_contents($login_template_path);
+		$login_template = file_get_contents($login_template_path);
 		//if a username has been posted, i.e. user is trying to login
 		if (isset($_POST["username"])) {
 			//checking password
 			//if password is correct, set username in session to username, return true
-			if(check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table)){
+			if(check_password($username, $password, $dbhost, $dbuser, $dbp, $db_database, $table)){
 				$_SESSION["username"] = $username;
 				$_SESSION["logged_in"] = 1;
 				return True;
@@ -66,7 +66,7 @@ function login($login_template_path, $error_not_logged_in, $db_host, $db_user, $
 }
 
 //login must be the first function called because it sets the session cookie which must be done before the http body starts
-if (login($login_template_path, $error_not_logged_in, $db_host, $db_user, $db_password, $db_database, "users") && $_SERVER["REQUEST_URI"] != "/auth/admin.php") {
+if (login($login_template_path, $error_not_logged_in, $dbhost, $dbuser, $dbp, $db_database, "users") && $_SERVER["REQUEST_URI"] != "/auth/admin.php") {
 	if($_GET["pid"] == 1){
 		echo (file_get_contents($morgen));
 	}
