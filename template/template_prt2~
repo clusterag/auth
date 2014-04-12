@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<!--This file is part of regular.
+	regular is Copyright 2013 Jonathan Eberle & Cluster-AG Leinger-Gymnasium Grünstadt regular is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+	regular is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+	You should have received a copy of the GNU General Public License along with regular. See the file LICENSE. If not, see http://www.gnu.org/licenses/.-->
+	<title>Leininger-Gymnasium</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="http://sechs.leiningergymnasium.de/fileadmin/regular/style.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	<script src="scripts/scroller.js"></script>
+	<script src="scripts/imageenhancer.js"></script>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+	<meta name="description" content="kurze, praegnante beschreibung ">
+	<meta name="keywords" content="liste relevanter schlagworte, nicht, uebertreiben">
+</head>
+<body>
+	<div id="main">
+		<div id="top">
+			<div id="headline">
+				<img src="http://sechs.leiningergymnasium.de/fileadmin/regular/images/logo.svg" alt="Logo des Leininger-Gymnasiums" title="Leininger-Gymnasium">
+				<h1>Leininger-Gymnasium</h1>
+			</div>
+			<nav id="topnav">
+				<ul id="mainnav">
+						<li class="mainnavitem" id="currentmainnavitem">
+							<a href="#">Home</a>
+								<ul class="subnav">
+									<li class="subnavitem">
+										<a href="#">1.subseite</a>
+									</li>
+									<li class="subnavitem">
+										<a href="#">2.subseite</a>
+									</li>
+									<li class="subnavitem">
+										<a href="#">3.subseite</a>
+									</li>
+									<li class="subnavitem">
+										<a href="#">4.subseite</a>
+									</li>
+								</ul>
+						</li>
+						<li class="mainnavitem" id="activemainnavitem">
+							<a href="heute">Vertretungsplan Heute</a>
+						</li>
+						<li class="mainnavitem">
+							<a href="morgen">Vertretungsplan Morgen</a>
+						</li>
+				</ul>
+			</nav>
+		</div>
+		<div id="bodycopy">
+			<div id="vertretungsplan">
+				<!--PLEASE INSERT TABLE HERE-->
+			</div>
+		</div>
+		<div id="footer">
+			<nav id="footernav">
+				<ul id="footernavlist">
+					<li class="footernavitem">
+						<a href="#">1.footerlink</a>
+					</li>
+					<li class="footernavitem">
+						<a href="#">2.footerlink</a>
+					</li>
+					<li class="footernavitem">
+						<a href="#">3.footerlink</a>
+					</li>
+					<li class="footernavitem">
+						<a href="#">4.footerlink</a>
+					</li>
+					<li class="footernavitem">
+						<a href="#">5.footerlink</a>
+					</li>
+				</ul>
+			</nav>
+					<a href="#top" id="topscroll">Nach oben, Valentin</a>
+						<span id="copyright"> Copyright <span>2013 </span> Cluster AG Leininger-Gymnasium</span>	<!--link to clusterag or impressum-->
+		</div>
+	</div>
+</body>
+</html>

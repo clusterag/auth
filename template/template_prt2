@@ -1,0 +1,28 @@
+
+		</div>
+		<div id="footer">
+			<nav id="footernav">
+				<ul id="footernavlist">
+					<li class="footernavitem">
+						<a href="#">1.footerlink</a>
+					</li>
+					<li class="footernavitem">
+						<a href="#">2.footerlink</a>
+					</li>
+					<li class="footernavitem">
+						<a href="#">3.footerlink</a>
+					</li>
+					<li class="footernavitem">
+						<a href="#">4.footerlink</a>
+					</li>
+					<li class="footernavitem">
+						<a href="#">5.footerlink</a>
+					</li>
+				</ul>
+			</nav>
+					<a href="#top" id="topscroll">Nach oben, Valentin</a>
+						<span id="copyright"> Copyright <span>2013 </span> Cluster AG Leininger-Gymnasium</span>	<!--link to clusterag or impressum-->
+		</div>
+	</div>
+</body>
+</html>
