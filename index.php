@@ -1,7 +1,7 @@
 <?php
 //CONF
-#$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php";
-$conf = "conf.php";
+$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php";
+#$conf = "../conf.php";
 include $conf;
 
 
@@ -23,7 +23,7 @@ function check_password($username, $password, $db_host, $db_user, $db_password, 
 	return $logged_in;
 }
 
-function login($login_template_path, $error_not_logged_in, $db_host, $db_user, $db_password, $db_database, $table){
+function login($login_template, $error_not_logged_in, $db_host, $db_user, $db_password, $db_database, $table){
 	//checks if the session is logged in
 	//if it is not, gets POST params and checks password
 	//if password is wrong or none given echoes login template
@@ -66,7 +66,7 @@ function login($login_template_path, $error_not_logged_in, $db_host, $db_user, $
 }
 
 //login must be the first function called because it sets the session cookie which must be done before the http body starts
-if (login($login_template_path, $error_not_logged_in, $db_host, $db_user, $db_password, $db_database, "users") && $_SERVER["REQUEST_URI"] != "/auth/admin.php") {
+if (login($login_template, $error_not_logged_in, $db_host, $db_user, $db_password, $db_database, "users") && $_SERVER["REQUEST_URI"] != "/auth/admin.php") {
 	if($_GET["pid"] == 1){
 		echo (file_get_contents($morgen));
 	}
