@@ -1,4 +1,35 @@
 <?php 
+
+$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php";
+include $conf;
+//maybe define database parameters as globals?
+
+
+//database functions
+
+//hopefully we won't be needing these parameters
+//function db_connect($db_host, $db_user, $db_password, $db_database){
+function db_connect(){
+	$database = new mysqli($db_host, $db_user, $db_password, $db_database);
+	return $database;
+}
+
+function db_get_field($database, $table, $get_field, $where_field, $where_value){
+	//escape $where_value. all other parameters are not user defined.
+	$where_value = $database->reaal_escape_string($where_value);
+	$query = "SELECT " . get_field . " FROM" . $table . " WHERE " . $where_field . " = '" . $where_value . "'";
+	$get_value = mysqli_fetch_assoc($database->query($query))[$get_field];
+	return $get_value;
+}
+
+function db_get_pw_hash($username){
+	$database = db_connect();
+	$hash = db_get_field($database, "users", "PW", "UID", $username);
+	return $hash;
+}
+
+
+
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
@@ -8,11 +39,15 @@ function session_logged_in(){
 	}
 }
 
-function check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table){
-	$database = new mysqli($db_host, $db_user, $db_password, $db_database);  //connect to database
-	
-	$hash_query = "SELECT PW FROM " . $table . " WHERE UID = '" . $username . "'";
-	$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
+//hopefully we won't be needing all these parameters anymore
+//function check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table){
+function check_password($username, $password){
+	//all this should be replaced by new function db_get_pw_hash
+	//$database = new mysqli($db_host, $db_user, $db_password, $db_database);  //connect to database
+	//$hash_query = "SELECT PW FROM " . $table . " WHERE UID = '" . $username . "'";
+	//$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
+
+	$hash = db_get_pw_hash($username);
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
 }
@@ -34,12 +69,13 @@ function login($login_template, $error_not_logged_in, $db_host, $db_user, $db_pa
 		//getting POST parameters
 		$username = $_POST["username"];  //Benutzer
 		$password = $_POST["password"];  //Passwort
-//		$login_template = file_get_contents($login_template_path);
 		//if a username has been posted, i.e. user is trying to login
 		if (isset($_POST["username"])) {
 			//checking password
 			//if password is correct, set username in session to username, return true
-			if(check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table)){
+			//hopefully we won't be needing all these parameters anymore
+			//if(check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table)){
+			if(check_password($username, $password)){
 				$_SESSION["username"] = $username;
 				$_SESSION["logged_in"] = 1;
 				return True;
