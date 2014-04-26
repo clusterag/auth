@@ -2,7 +2,12 @@
 
 $conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php";
 include $conf;
+
+//TODO:
 //maybe define database parameters as globals?
+//define and ENFORCE guideline for escaping SQL queries.
+
+//GUIDELINES:
 
 
 //database functions
@@ -22,10 +27,26 @@ function db_get_field($database, $table, $get_field, $where_field, $where_value)
 	return $get_value;
 }
 
-function db_get_pw_hash($username){
+function db_set_field($database, $table, $set_field, $set_value, $where_field, $where_value){
+	//WARNING: THIS FUNCTION DOES NOT RETURN ERRORS
+	//escape $where_value.
+	$where_value = $database->reaal_escape_string($where_value);
+	$query = "UPDATE " . $table . " SET " . set_field . " = '" . $set_value . "' WHERE " . $where_field . " = '" . $where_value . "'";
+}
+
+function set_pw_hash($username, $hash){
+	$database = db_connect();
+	db_set_field($database, "users", "PW", $hash, "UID", $username);
+}
+
+function get_pw_hash($username){
 	$database = db_connect();
 	$hash = db_get_field($database, "users", "PW", "UID", $username);
 	return $hash;
+}
+
+function set_password($username, $password){
+	set_pw_hash($username, password_hash($password, PASSWORD_BCRYPT));
 }
 
 
@@ -42,12 +63,12 @@ function session_logged_in(){
 //hopefully we won't be needing all these parameters anymore
 //function check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table){
 function check_password($username, $password){
-	//all this should be replaced by new function db_get_pw_hash
+	//all this should be replaced by new function get_pw_hash
 	//$database = new mysqli($db_host, $db_user, $db_password, $db_database);  //connect to database
 	//$hash_query = "SELECT PW FROM " . $table . " WHERE UID = '" . $username . "'";
 	//$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
 
-	$hash = db_get_pw_hash($username);
+	$hash = get_pw_hash($username);
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
 }
