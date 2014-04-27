@@ -10,6 +10,18 @@ include $conf;
 //GUIDELINES:
 
 
+global $root;
+global $login_template_path;
+global $logout_template_path;
+global $admin_template_path;
+global $dbhost;
+global $dbuser;
+global $dbpk;
+global $db_database;
+global $error_not_logged_in;
+global $heute;
+global $morgen;
+
 //database functions
 
 //hopefully we won't be needing these parameters
