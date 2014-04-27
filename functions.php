@@ -21,7 +21,7 @@ function db_connect(){
 
 function db_get_field($database, $table, $get_field, $where_field, $where_value){
 	//escape $where_value. all other parameters are not user defined.
-	$where_value = $database->reaal_escape_string($where_value);
+	$where_value = $database->real_escape_string($where_value);
 	$query = "SELECT " . get_field . " FROM" . $table . " WHERE " . $where_field . " = '" . $where_value . "'";
 	$get_value = mysqli_fetch_assoc($database->query($query))[$get_field];
 	return $get_value;
