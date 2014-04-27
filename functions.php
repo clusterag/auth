@@ -30,7 +30,7 @@ function db_get_field($database, $table, $get_field, $where_field, $where_value)
 function db_set_field($database, $table, $set_field, $set_value, $where_field, $where_value){
 	//WARNING: THIS FUNCTION DOES NOT RETURN ERRORS
 	//escape $where_value.
-	$where_value = $database->reaal_escape_string($where_value);
+	$where_value = $database->real_escape_string($where_value);
 	$query = "UPDATE " . $table . " SET " . set_field . " = '" . $set_value . "' WHERE " . $where_field . " = '" . $where_value . "'";
 }
 
