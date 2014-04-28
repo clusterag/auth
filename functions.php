@@ -33,7 +33,7 @@ function db_connect(){
 	global $db_password;
 	global $db_database;
 	$database = new mysqli($db_host, $db_user, $db_password, $db_database);
-	echo strlen($db_password);
+	echo strlen($db_database);
 	return $database;
 }
 
