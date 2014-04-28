@@ -33,6 +33,9 @@ function db_connect(){
 	global $db_password;
 	global $db_database;
 	$database = new mysqli($db_host, $db_user, $db_password, $db_database);
+	if ($database->connect_errno) {
+    	echo "Failed to connect to MySQL: (" . $databse->connect_errno . ") " . $database->connect_error;
+	}
 	echo strlen($db_database);
 	return $database;
 }
