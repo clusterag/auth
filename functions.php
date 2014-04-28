@@ -22,7 +22,6 @@ include $conf;
 //global $heute;
 //global $morgen;
 
-echo strlen($db_host);
 
 //database functions
 
@@ -34,7 +33,7 @@ function db_connect(){
 	global $db_password;
 	global $db_database;
 	$database = new mysqli($db_host, $db_user, $db_password, $db_database);
-	echo strlen($db_user);
+	echo strlen($db_password);
 	return $database;
 }
 
