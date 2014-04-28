@@ -110,8 +110,9 @@ function login(){
 	//checks if the session is logged in
 	//if it is not, gets POST params and checks password
 	//if password is wrong or none given echoes login template
-	global $login_template;
+	global $login_template_path;
 	global $error_not_logged_in;
+	$login_template = file_get_contents($login_template_path);
 
 	session_set_cookie_params(300);
 	session_start();
