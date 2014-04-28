@@ -16,7 +16,7 @@ global $logout_template_path;
 global $admin_template_path;
 global $dbhost;
 global $dbuser;
-global $dbpk;
+global $db_password;
 global $db_database;
 global $error_not_logged_in;
 global $heute;
