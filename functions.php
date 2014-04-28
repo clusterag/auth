@@ -89,7 +89,7 @@ function check_password($username, $password){
 	return $logged_in;
 }
 
-function login($login_template, $error_not_logged_in, $db_host, $db_user, $db_password, $db_database, $table){
+function login($login_template, $error_not_logged_in){
 	//checks if the session is logged in
 	//if it is not, gets POST params and checks password
 	//if password is wrong or none given echoes login template
