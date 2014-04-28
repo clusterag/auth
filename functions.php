@@ -22,7 +22,7 @@ global $error_not_logged_in;
 global $heute;
 global $morgen;
 
-echo $db_host;
+echo len($db_host);
 
 //database functions
 
