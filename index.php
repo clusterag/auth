@@ -15,6 +15,7 @@ if (login() && $_SERVER["REQUEST_URI"] != "/auth/admin.php") {
 	};
 	echo(file_get_contents($logout_template_path));
 };
+echo $morgen;
 
 
 ?>
