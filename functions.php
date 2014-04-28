@@ -100,10 +100,12 @@ function check_password($username, $password){
 	return $logged_in;
 }
 
-function login($login_template, $error_not_logged_in){
+function login(){
 	//checks if the session is logged in
 	//if it is not, gets POST params and checks password
 	//if password is wrong or none given echoes login template
+	global $login_template;
+	global $error_not_logged_in;
 
 	session_set_cookie_params(300);
 	session_start();
