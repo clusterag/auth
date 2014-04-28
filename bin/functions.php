@@ -29,7 +29,7 @@ function insert_into_str($string, $place, $insert){
 }
 
 function build_html($content, $header_left = "", $header_right = ""){
-	global $template_path
+	global $template_path;
 	$template = file_get_contents($template_path);
 
 	$template = insert_into_str($template, "<!--CONTENT-->", $content);
