@@ -23,6 +23,12 @@ include $conf;
 //global $morgen;
 
 
+function insert_into_str($string, $place, $insert){
+	$around = explode($place, $string);
+	return $around[0] . $insert . $around[1];
+}
+
+
 //database functions
 
 //hopefully we won't be needing these parameters
@@ -144,4 +150,5 @@ function login(){
 		};
 	};
 }
+
  ?>
