@@ -22,6 +22,7 @@ global $error_not_logged_in;
 global $heute;
 global $morgen;
 
+echo $db_host;
 
 //database functions
 
