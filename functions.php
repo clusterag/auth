@@ -45,6 +45,9 @@ function db_get_field($database, $table, $get_field, $where_field, $where_value)
 	$where_value = $database->real_escape_string($where_value);
 	$query = "SELECT " . get_field . " FROM" . $table . " WHERE " . $where_field . " = '" . $where_value . "'";
 	$get_value = mysqli_fetch_assoc($database->query($query))[$get_field];
+	if (!$get_value){
+		echo "Table creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
+	}
 	return $get_value;
 }
 
