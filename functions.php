@@ -10,17 +10,17 @@ include $conf;
 //GUIDELINES:
 
 
-global $root;
-global $login_template_path;
-global $logout_template_path;
-global $admin_template_path;
-global $db_host;
-global $db_user;
-global $db_password;
-global $db_database;
-global $error_not_logged_in;
-global $heute;
-global $morgen;
+//global $root;
+//global $login_template_path;
+//global $logout_template_path;
+//global $admin_template_path;
+//global $db_host;
+//global $db_user;
+//global $db_password;
+//global $db_database;
+//global $error_not_logged_in;
+//global $heute;
+//global $morgen;
 
 echo strlen($db_host);
 
@@ -29,6 +29,10 @@ echo strlen($db_host);
 //hopefully we won't be needing these parameters
 //function db_connect($db_host, $db_user, $db_password, $db_database){
 function db_connect(){
+	global $db_host;
+	global $db_user;
+	global $db_password;
+	global $db_database;
 	$database = new mysqli($db_host, $db_user, $db_password, $db_database);
 	echo $db_host;
 	echo "test";
