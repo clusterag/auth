@@ -34,8 +34,7 @@ function db_connect(){
 	global $db_password;
 	global $db_database;
 	$database = new mysqli($db_host, $db_user, $db_password, $db_database);
-	echo $db_host;
-	echo "test";
+	echo strlen($db_user);
 	return $database;
 }
 
