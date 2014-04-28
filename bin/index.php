@@ -1,7 +1,5 @@
 <?php
 //CONF
-$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php";
-include $conf;
 include "functions.php";
 
 //login must be the first function called because it sets the session cookie which must be done before the http body starts

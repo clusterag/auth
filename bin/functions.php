@@ -1,6 +1,6 @@
 <?php 
 
-$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/conf.php";
+$conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/auth/conf.php";
 include $conf;
 
 //TODO:
