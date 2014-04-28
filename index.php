@@ -8,6 +8,7 @@ include "functions.php";
 if (login() && $_SERVER["REQUEST_URI"] != "/auth/admin.php") {
 	if($_GET["pid"] == 1){
 		echo (file_get_contents($morgen));
+		echo $morgen;
 	}
 	else {
 		echo (file_get_contents($heute));
