@@ -28,6 +28,49 @@ function insert_into_str($string, $place, $insert){
 	return $around[0] . $insert . $around[1];
 }
 
+function build_link($text, $href, $class="", $id=""){
+	$link = "<a href=\"" . $href . "\" ";
+	if ($class){
+		$link = $link . "class=\"" . $class . "\" ";
+	}
+	if ($id){
+		$link = $link . "id=\"" . $id . "\" ";
+	}
+	$link = $link . ">" . $text . "</a>";
+
+	return $link;
+}
+
+function build_ul_item($text, $class="", $id = ""){
+	$item = "<li " ;
+	if ($class){
+		$item = $item . "class=\"" . $class . "\"";
+	}
+	if ($id){
+		$item = $item . "id=\"" . $id . "\"";
+		}
+	$item = $item . ">" . $text . "</li>";
+	return $item;
+}
+
+function build_ul($items, $class="", $id=""){
+	$header = "<ul ";
+	if ($class){
+		$header = $header . "class=\"" . $class . "\" ";
+	}
+	if ($id){
+		$header = $header . "id=\"" . $id . "\" ";
+	}
+	$header = $header . ">";
+
+	foreach ($items as $item) {
+		$header = $header . $item;
+	}
+	$header = $header . "</ul>";
+}
+
+
+
 function build_html($content, $header_left = "", $header_right = ""){
 	global $template_path;
 	$template = file_get_contents($template_path);
