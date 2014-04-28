@@ -28,6 +28,20 @@ function insert_into_str($string, $place, $insert){
 	return $around[0] . $insert . $around[1];
 }
 
+function build_html($content, $header_left = "", $header_right = ""){
+	global $template_path
+	$template = file_get_contents($template_path);
+
+	$template = insert_into_str($template, "<!--CONTENT-->", $content);
+
+	if ($header_left){
+		$template = insert_into_str($template, "<!--HEADER_LEFT-->", $header_left);
+	}
+
+	if ($header_right){
+		$template = insert_into_str($template, "<!--HEADER_RIGHT-->", $header_right);
+	}
+}
 
 //database functions
 
