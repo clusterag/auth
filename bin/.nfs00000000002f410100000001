@@ -67,16 +67,9 @@ function build_ul($items, $class="", $id=""){
 		$header = $header . $item;
 	}
 	$header = $header . "</ul>";
-	return $header;
 }
 
-function build_header_item($text, $class, $align){
-	return build_ul_item($text, $class, $algin);
-}
 
-function build_header($align){
-
-}
 
 function build_html($content, $header_left = "", $header_right = ""){
 	global $template_path;
