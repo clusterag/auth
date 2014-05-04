@@ -10,7 +10,7 @@ if (login() && $_SERVER["REQUEST_URI"] != "admin.php") {
 	}
 	else {
 	//	echo (file_get_contents($heute));
-	echo(make_html(True, file_get_contents($heute));
+	echo(make_html(True, file_get_contents($heute)));
 	};
 	echo(file_get_contents($logout_template_path));
 };
