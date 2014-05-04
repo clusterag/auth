@@ -90,6 +90,10 @@ h1 {
   background:/*#FFFFFF*/#9eff91;
 }
 
+#right {
+  align:right;
+}
+
 .subnav {
   display:none;
   position:absolute;
