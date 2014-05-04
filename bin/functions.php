@@ -84,7 +84,7 @@ function make_html($logged_in, $content=""){
 	$header_left = "";
 	$header_right = "";
 
-	$template = insert_into_str($template, "<!--CONTENT-->", $content);
+	$template = insert_into_str($template, "<!--CONTENT-->", "stringtest");
 
 	if ($logged_in){		
 		$header_left = build_header_item(build_link("Heute", "heute.html"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.html"), "mainnavitem", "left");
