@@ -214,7 +214,7 @@ function login(){
 		}
 		//if no username has been posted, i.e. user has not tried to login yet
 		else {
-			echo(make_html(False, $login_template);
+			echo(make_html(False, $login_template));
 			return False;
 			
 		};
