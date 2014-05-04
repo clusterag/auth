@@ -208,7 +208,7 @@ function login(){
 				return True;
 			}
 			else {
-				echo(make_html(False, $error_not_logged_in . $login_template);
+				echo(make_html(False, $error_not_logged_in . $login_template));
 				return False;
 			};
 		}
