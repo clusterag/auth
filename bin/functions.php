@@ -71,7 +71,7 @@ function build_ul($items, $class="", $id=""){
 }
 
 function build_header_item($text, $class, $align){
-	return build_ul_item($text, $class, $algin);
+	return build_ul_item($text, $class, $align);
 }
 
 function build_header($align){
