@@ -208,14 +208,13 @@ function login(){
 				return True;
 			}
 			else {
-				echo($error_not_logged_in);
-				echo($login_template);
+				echo(make_html(False, $error_not_logged_in . $login_template);
 				return False;
 			};
 		}
 		//if no username has been posted, i.e. user has not tried to login yet
 		else {
-			echo($login_template);
+			echo(make_html(False, $login_template);
 			return False;
 			
 		};
