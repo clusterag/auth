@@ -78,11 +78,18 @@ function build_header($align){
 
 }
 
-function build_html($content, $header_left = "", $header_right = ""){
+function make_html($logged_in, $content=""){
 	global $template_path;
 	$template = file_get_contents($template_path);
+	$header_left = "";
+	$header_right = "";
 
 	$template = insert_into_str($template, "<!--CONTENT-->", $content);
+
+	if ($logged_in){		
+		$header_left = build_header_item(build_link("Heute", "heute.html"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.html"), "mainnavitem", "left");
+		$header_right = build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
+	}
 
 	if ($header_left){
 		$template = insert_into_str($template, "<!--HEADER_LEFT-->", $header_left);
