@@ -3,7 +3,7 @@ include "functions.php";
 
 if (login()){
 	if ($_POST["password_1"]){
-		if (!(password_verify($_SESSION["username"], $_POST["password"]))){
+		if (!(check_password($_SESSION["username"], $_POST["password"]))){
 			echo (make_html(True, "Altes Passwort stimmt nicht." . file_get_contents($settings_template_path)));
 		}
 		elseif (!($_POST["password_1"] == $_POST["password_2"])){
