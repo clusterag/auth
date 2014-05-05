@@ -87,7 +87,7 @@ function make_html($logged_in, $content=""){
 	$template = insert_into_str($template, "<!--CONTENT-->", $content);
 
 	if ($logged_in){		
-		$header_left = build_header_item(build_link("Heute", "heute.html"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.html"), "mainnavitem", "left");
+		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
 		$header_right = build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
 	}
 
