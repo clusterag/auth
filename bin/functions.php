@@ -157,7 +157,7 @@ function set_password($username, $password){
 
 function is_admin($username){
 	$database = db_connect();
-	if (db_get_field($database, "users", "admin", "UID", $username) == "1"){
+	if (db_get_field($database, "users", "admin", "UID", $username) == "2"){
 		return True;
 	}
 	else {
