@@ -10,19 +10,6 @@ include $conf;
 //GUIDELINES:
 
 
-//global $root;
-//global $login_template_path;
-//global $logout_template_path;
-//global $admin_template_path;
-//global $db_host;
-//global $db_user;
-//global $db_password;
-//global $db_database;
-//global $error_not_logged_in;
-//global $heute;
-//global $morgen;
-
-
 function insert_into_str($string, $place, $insert){
 	$around = explode($place, $string);
 	return $around[0] . $insert . $around[1];
@@ -83,7 +70,7 @@ function make_html($logged_in, $content=""){
 
 	$template = insert_into_str($template, "<!--CONTENT-->", $content);
 
-	if ($logged_in && is_admin($username) ){		
+	if ($logged_in && is_admin() ){		
 		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
 		$header_right = build_header_item($username, "mainnavitem", "right") . build_header_item(build_link("Benutzerverwaltung", "admin.php"), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
 	}
@@ -155,7 +142,8 @@ function set_password($username, $password){
 	set_pw_hash($username, password_hash($password, PASSWORD_BCRYPT));
 }
 
-function is_admin($username){
+function is_admin(){
+	$username = $_SESSION["username"];
 	$database = db_connect();
 	if (db_get_field($database, "users", "admin", "UID", $username) == "2"){
 		return True;
