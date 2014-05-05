@@ -142,6 +142,26 @@ function set_password($username, $password){
 	set_pw_hash($username, password_hash($password, PASSWORD_BCRYPT));
 }
 
+function set_teacher($username, $is_teacher){
+	$database = db_connect();
+	if ($is_teacher) {
+		db_set_field($database, "users", "teacher", "2", "UID", $username);
+	}
+	else {
+		db_set_field($database, "users", "teacher", "1", "UID", $username);
+	}
+}
+
+function set_admin($username, $is_admin){
+	$database = db_connect();
+	if ($is_admin) {
+		db_set_field($database, "users", "admin", "2", "UID", $username);
+	}
+	else {
+		db_set_field($database, "users", "admin", "1", "UID", $username);
+	}
+}
+
 function is_admin(){
 	$username = $_SESSION["username"];
 	$database = db_connect();
@@ -150,6 +170,16 @@ function is_admin(){
 	}
 	else {
 		return False;
+	}
+}
+
+function is_user($username){
+	$database = db_connect();
+	if (db_get_field($database, "users", "*", "UID", $username)){
+		echo "user exists";
+	}
+	else {
+		echo "user doesn't exist";
 	}
 }
 
