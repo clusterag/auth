@@ -11,6 +11,7 @@ if (login()){
 		}
 		else {
 			set_password($_SESSION["username"], $_POST["password_1"]);
+			echo (make_html(True, "Passwort erfolgreich geandert." . file_get_contents($settings_template_path)));
 		}
 	}
 	else {
