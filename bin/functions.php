@@ -74,21 +74,22 @@ function build_header_item($text, $class, $align){
 	return build_ul_item($text, $class, $align);
 }
 
-function build_header($align){
-
-}
-
 function make_html($logged_in, $content=""){
 	global $template_path;
 	$template = file_get_contents($template_path);
 	$header_left = "";
 	$header_right = "";
+	$username = $_SESSION["username"];
 
 	$template = insert_into_str($template, "<!--CONTENT-->", $content);
 
-	if ($logged_in){		
+	if ($logged_in && is_admin($username) ){		
 		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
-		$header_right = build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
+		$header_right = build_header_item($username, "mainnavitem", "right") . build_header_item(build_link("Benutzerverwaltung", "admin.php"), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
+	}
+	elseif ($logged_in) {
+		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
+		$header_right = build_header_item($username, "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
 	}
 
 	if ($header_left){
@@ -154,7 +155,15 @@ function set_password($username, $password){
 	set_pw_hash($username, password_hash($password, PASSWORD_BCRYPT));
 }
 
-
+function is_admin($username){
+	$database = db_connect();
+	if (db_get_field($database, "users", "admin", "UID", $username) == "1"){
+		return True;
+	}
+	else {
+		return False;
+	}
+}
 
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
@@ -177,6 +186,7 @@ function check_password($username, $password){
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
 }
+
 
 function login(){
 	//checks if the session is logged in
