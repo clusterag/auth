@@ -176,6 +176,7 @@ function is_admin(){
 function is_user($username){
 	$database = db_connect();
 	if (db_get_field($database, "users", "*", "UID", $username)){
+		echo (db_get_field($database, "users", "*", "UID", $username);
 		return True;
 	}
 	else {
