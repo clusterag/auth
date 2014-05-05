@@ -134,7 +134,7 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 	//escape $where_value.
 	$where_value = $database->real_escape_string($where_value);
 	$set_value = $database->real_escape_string($set_value);
-	$query = "UPDATE " . $table . " SET " . set_field . " = '" . $set_value . "' WHERE " . $where_field . " = '" . $where_value . "'";
+	$query = "UPDATE " . $table . " SET " . $set_field . " = '" . $set_value . "' WHERE " . $where_field . " = '" . $where_value . "'";
 	$database->query($query);
 	//mysqli_real_query($database, $query);
 }
