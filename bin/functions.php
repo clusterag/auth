@@ -152,16 +152,6 @@ function set_teacher($username, $is_teacher){
 	}
 }
 
-function set_admin($username, $is_admin){
-	$database = db_connect();
-	if ($is_admin) {
-		db_set_field($database, "users", "admin", "2", "UID", $username);
-	}
-	else {
-		db_set_field($database, "users", "admin", "1", "UID", $username);
-	}
-}
-
 function is_admin(){
 	$username = $_SESSION["username"];
 	$database = db_connect();
@@ -174,6 +164,7 @@ function is_admin(){
 }
 
 function is_user($username){
+	//DOESN'T WORK
 	$database = db_connect();
 	if (db_get_field($database, "users", "*", "UID", $username)){
 		echo db_get_field($database, "users", "*", "UID", $username);
@@ -182,6 +173,19 @@ function is_user($username){
 	else {
 		return False;
 	}
+}
+
+function add_user($username, $password, $is_teacher){
+	$hash = password_hash($password, PASSWORD_BCRYPT);
+	if ($is_teacher){
+		$teacher = "2";
+	}
+	else {
+		$teacher = "1";
+	}
+
+	$query = "INSERT INTO '" . $table . "' (' UID', 'PW', 'teacher', 'admin') VALUES (' ." . $username . "', " . $hash . "', '" . $teacher . "', '1');";
+	$database->query($query);
 }
 
 function session_logged_in(){
