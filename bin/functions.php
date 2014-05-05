@@ -111,9 +111,9 @@ function db_get_field($database, $table, $get_field, $where_field, $where_value)
 	$where_value = $database->real_escape_string($where_value);
 	$query = "SELECT " . $get_field . " FROM " . $table . " WHERE " . $where_field . " = '" . $where_value . "'";
 	$get_value = mysqli_fetch_assoc($database->query($query))[$get_field];
-	if (!$get_value){
-		echo "Table creation failed: (" . $database->errno . ") " . $database->error;
-	}
+	//if (!$get_value){
+	//	echo "Table creation failed: (" . $database->errno . ") " . $database->error;
+	//}
 	return $get_value;
 }
 
@@ -176,10 +176,10 @@ function is_admin(){
 function is_user($username){
 	$database = db_connect();
 	if (db_get_field($database, "users", "*", "UID", $username)){
-		echo "user exists";
+		return True;
 	}
 	else {
-		echo "user doesn't exist";
+		return False;
 	}
 }
 
