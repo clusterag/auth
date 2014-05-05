@@ -10,19 +10,6 @@ include $conf;
 //GUIDELINES:
 
 
-//global $root;
-//global $login_template_path;
-//global $logout_template_path;
-//global $admin_template_path;
-//global $db_host;
-//global $db_user;
-//global $db_password;
-//global $db_database;
-//global $error_not_logged_in;
-//global $heute;
-//global $morgen;
-
-
 function insert_into_str($string, $place, $insert){
 	$around = explode($place, $string);
 	return $around[0] . $insert . $around[1];
@@ -83,7 +70,7 @@ function make_html($logged_in, $content=""){
 
 	$template = insert_into_str($template, "<!--CONTENT-->", $content);
 
-	if ($logged_in && is_admin($username) ){		
+	if ($logged_in && is_admin() ){		
 		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
 		$header_right = build_header_item($username, "mainnavitem", "right") . build_header_item(build_link("Benutzerverwaltung", "admin.php"), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
 	}
@@ -124,9 +111,9 @@ function db_get_field($database, $table, $get_field, $where_field, $where_value)
 	$where_value = $database->real_escape_string($where_value);
 	$query = "SELECT " . $get_field . " FROM " . $table . " WHERE " . $where_field . " = '" . $where_value . "'";
 	$get_value = mysqli_fetch_assoc($database->query($query))[$get_field];
-	if (!$get_value){
-		echo "Table creation failed: (" . $database->errno . ") " . $database->error;
-	}
+	//if (!$get_value){
+	//	echo "Table creation failed: (" . $database->errno . ") " . $database->error;
+	//}
 	return $get_value;
 }
 
@@ -155,7 +142,18 @@ function set_password($username, $password){
 	set_pw_hash($username, password_hash($password, PASSWORD_BCRYPT));
 }
 
-function is_admin($username){
+function set_teacher($username, $is_teacher){
+	$database = db_connect();
+	if ($is_teacher) {
+		db_set_field($database, "users", "teacher", "2", "UID", $username);
+	}
+	else {
+		db_set_field($database, "users", "teacher", "1", "UID", $username);
+	}
+}
+
+function is_admin(){
+	$username = $_SESSION["username"];
 	$database = db_connect();
 	if (db_get_field($database, "users", "admin", "UID", $username) == "2"){
 		return True;
@@ -163,6 +161,32 @@ function is_admin($username){
 	else {
 		return False;
 	}
+}
+
+function is_user($username){
+	//DOESN'T WORK
+	$database = db_connect();
+	if (db_get_field($database, "users", "*", "UID", $username)){
+		echo db_get_field($database, "users", "*", "UID", $username);
+		return True;
+	}
+	else {
+		return False;
+	}
+}
+
+function add_user($username, $password, $is_teacher){
+	$database = db_connect();
+	$hash = password_hash($password, PASSWORD_BCRYPT);
+	if ($is_teacher){
+		$teacher = "2";
+	}
+	else {
+		$teacher = "1";
+	}
+
+	$query = "INSERT INTO '" . $table . "' (' UID', 'PW', 'teacher', 'admin') VALUES (' ." . $username . "', " . $hash . "', '" . $teacher . "', '1');";
+	$database->query($query);
 }
 
 function session_logged_in(){
