@@ -13,7 +13,7 @@ if (login()){
 			set_password($_SESSION["username"], $_POST["password_1"]);
 		}
 	}
-	echo (make_html(True, file_get_contents($settings_template_path)));
+	//echo (make_html(True, file_get_contents($settings_template_path)));
 }
 
 
