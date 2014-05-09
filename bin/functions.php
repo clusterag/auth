@@ -185,7 +185,6 @@ function add_user($username, $password, $is_teacher){
 		$teacher = "1";
 	}
 	$query = "INSERT INTO `users` ( `UID` , `PW` , `teacher` , `admin` ) VALUES ( '" . $username . "', '" . $hash . "', '" . $teacher . "', '1' );";
-	echo($query);
 	$database->query($query);
 }
 
@@ -264,3 +263,4 @@ function login(){
 }
 
  ?>
+
