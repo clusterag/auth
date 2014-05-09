@@ -1,14 +1,13 @@
 <?php
 include "functions.php";
 
+$username = $_POST["username"];
+
 if (login() && is_admin()) {
-	if ($_POST["username"] && is_user($_POST["username"])){
-		$username = $_POST["username"];
-		if ($_POST["password"]) {
+	if ($username && is_user($username)){
 			del_user($username);
-		}
 	}
-	elseif ($_POST["username"]){
+	elseif ($username){
 		echo(make_html(True, "Benutzer existiert nicht." . file_get_contents($del_user_template_path)));
 	}
 	else {
