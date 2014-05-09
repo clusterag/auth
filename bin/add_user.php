@@ -10,6 +10,7 @@ if (login() && is_admin()) {
 			$teacher = False;
 		}
 		add_user($_POST["username"], $_POST["password"], $teacher);
+		header('Location: admin.php');
 	}
 	elseif ($_POST["username"]) {
 		echo(make_html(True, "Bitte geben sie ein Passwort ein. " . file_get_contents($add_user_template_path)));
