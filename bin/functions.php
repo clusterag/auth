@@ -189,6 +189,12 @@ function add_user($username, $password, $is_teacher){
 	$database->query($query);
 }
 
+function del_user($username){
+	$database = db_connect();
+	$query = "DELETE FROM `users` WHERE `UID` = '" . $username . "'";
+	$database->query($query);
+}
+
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
