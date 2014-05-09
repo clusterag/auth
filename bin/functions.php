@@ -177,7 +177,7 @@ function is_user($username){
 function add_user($username, $password, $is_teacher){
 	$database = db_connect();
 	$hash = password_hash($password, PASSWORD_BCRYPT);
-	
+
 	if ($is_teacher){
 		$teacher = "2";
 	}
@@ -185,7 +185,7 @@ function add_user($username, $password, $is_teacher){
 		$teacher = "1";
 	}
 
-	$query = "INSERT INTO 'users' (' UID', 'PW', 'teacher', 'admin') VALUES (' ." . $username . "', " . $hash . "', '" . $teacher . "', '1');";
+	$query = "INSERT INTO 'users' (' UID', 'PW', 'teacher', 'admin') VALUES ('" . $username . "', " . $hash . "', '" . $teacher . "', '1');";
 	$database->query($query);
 }
 
