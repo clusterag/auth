@@ -4,7 +4,8 @@ include "functions.php";
 $username = $_POST["username"];
 
 if (login() && is_admin()) {
-	if ($username && is_user($username)){
+	//if ($username && is_user($username)){
+	if ($username){
 			del_user($username);
 	}
 	elseif ($username){
