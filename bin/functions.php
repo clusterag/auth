@@ -34,7 +34,7 @@ function build_ul_item($text, $class="", $id = ""){
 		$item = $item . "class=\"" . $class . "\"";
 	}
 	if ($id){
-		$item = $item . "id=\"" . $id . "\"";
+		$item = $item . " id=\"" . $id . "\"";
 		}
 	$item = $item . ">" . $text . "</li>";
 	return $item;
