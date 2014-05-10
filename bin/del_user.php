@@ -3,8 +3,7 @@ include "functions.php";
 
 $username = $_POST["username"];
 
-if (login() && is_admin()) {
-	//if ($username && is_user($username) && $username !="admin"){
+if (login() && is_admin() && is_user($username) ) {
 	if ($username && $username != "admin"){
 			del_user($username);
 			header('Location: admin.php');

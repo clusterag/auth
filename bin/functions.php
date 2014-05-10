@@ -165,11 +165,19 @@ function is_admin(){
 function is_user($username){
 	//DOESN'T WORK
 	$database = db_connect();
-	if (db_get_field($database, "users", "*", "UID", $username)){
-		echo db_get_field($database, "users", "*", "UID", $username);
+	//if (db_get_field($database, "users", "*", "UID", $username)){
+	//	echo db_get_field($database, "users", "*", "UID", $username);
+	//	return True;
+	//}
+	//else {
+	//	return False;
+	//}
+	// SELECT * FROM `users` WHERE `UID`='$username';
+	$query = "SELECT * FROM `users` WHERE `UID`='" . $username . "';";
+	if ($database->query($query)){
 		return True;
 	}
-	else {
+	else{
 		return False;
 	}
 }
@@ -263,4 +271,3 @@ function login(){
 }
 
  ?>
-
