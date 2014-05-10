@@ -163,8 +163,9 @@ function is_admin(){
 }
 
 function is_user($username){
-	//DOESN'T WORK
 	$database = db_connect();
+	
+	//DOESN'T WORK
 	//if (db_get_field($database, "users", "*", "UID", $username)){
 	//	echo db_get_field($database, "users", "*", "UID", $username);
 	//	return True;
@@ -172,6 +173,8 @@ function is_user($username){
 	//else {
 	//	return False;
 	//}
+
+	// this always returns True
 	// SELECT * FROM `users` WHERE `UID`='$username';
 	$query = "SELECT * FROM `users` WHERE `UID`='" . $username . "';";
 	if (mysqli_fetch_assoc($database->query($query))){
