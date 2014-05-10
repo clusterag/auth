@@ -18,5 +18,6 @@ if (login() && is_admin() && is_user($username) ) {
 
 }
 
+echo(is_user($username));
 
 ?>
