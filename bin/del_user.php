@@ -3,7 +3,7 @@ include "functions.php";
 
 $username = $_POST["username"];
 
-if (login() && is_admin() && is_user($username) ) {
+if (login() && is_admin() ) {
 	if ($username && $username != "admin"){
 			del_user($username);
 			echo(make_html(True, "Benutzer \"" . $username . "\" gelöscht" . file_get_contents($del_user_template_path)));
