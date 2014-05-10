@@ -174,7 +174,7 @@ function is_user($username){
 	//}
 	// SELECT * FROM `users` WHERE `UID`='$username';
 	$query = "SELECT * FROM `users` WHERE `UID`='" . $username . "';";
-	if ($database->query($query)){
+	if (mysqli_fetch_assoc($database->query($query))){
 		return True;
 	}
 	else{
