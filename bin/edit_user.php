@@ -8,11 +8,9 @@ if (login() && is_admin()) {
 			set_password($username, $_POST["password"]);
 		}
 		if ($_POST["teacher"] == "2"){
-			echo "2";
 			set_teacher($username, True);
 		}
 		else {
-			echo "1";
 			set_teacher($username, False);
 		}
 		echo(make_html(True, "Benutzer erfolgreich ge&auml;ndert." . file_get_contents($edit_user_template_path)));
