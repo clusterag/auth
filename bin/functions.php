@@ -178,7 +178,8 @@ function is_user($username){
 	// SELECT * FROM `users` WHERE `UID`='$username';
 	//$query = "SELECT * FROM `users` WHERE `UID`='" . $username . "';";
 	$query = "SELECT 1 FROM 'table' WHERE 'UID' = '" . $username . "';";
-	echo ($database->num_rows($database->query($query)));
+	$result = $database->query($query);
+	echo ($result->num_rows());
 	//if (){
 	//	return True;
 	//}
