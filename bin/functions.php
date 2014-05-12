@@ -178,12 +178,13 @@ function is_user($username){
 	// SELECT * FROM `users` WHERE `UID`='$username';
 	//$query = "SELECT * FROM `users` WHERE `UID`='" . $username . "';";
 	$query = "SELECT 1 FROM 'table' WHERE 'UID' = '" . $username . "';";
-	if ($database->query($query)){
-		return True;
-	}
-	else{
-		return False;
-	}
+	echo ($database->num_rows($database->query($query)));
+	//if (){
+	//	return True;
+	//}
+	//else{
+	//	return False;
+	//}
 }
 
 function add_user($username, $password, $is_teacher){
