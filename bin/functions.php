@@ -134,17 +134,17 @@ function get_user_list(){
 	var_dump($list);
 	echo("asdlfkjas;dlfkja;sldfjk;alsdkjf");
 	var_dump($list["UID"]);
-	foreach ($list as $item){
-		//echo (var_dump($item));
-		//$users = $users . $subitem . "\r";
-		$item = mysqli_fetch_assoc($item);
-		//echo (var_dump($item));
-		//echo($item["UID"]);
-		foreach($item as $subitem){
-			//$users = $users . $subitem . "\n";
-			echo($subitem);
-		}
-	}
+	//foreach ($list as $item){
+	//	//echo (var_dump($item));
+	//	//$users = $users . $subitem . "\r";
+	//	$item = mysqli_fetch_assoc($item);
+	//	//echo (var_dump($item));
+	//	//echo($item["UID"]);
+	//	foreach($item as $subitem){
+	//		//$users = $users . $subitem . "\n";
+	//		echo($subitem);
+	//	}
+	//}
 	return $users;
 }
 
