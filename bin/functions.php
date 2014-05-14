@@ -131,17 +131,19 @@ function get_user_list(){
 	$query = "SELECT * FROM `users` LIMIT 1;";
 	$list = mysqli_fetch_fields($database->query($query));
 	$users = "";
-	foreach ($list as $item){
-		//echo (var_dump($item));
-		//$users = $users . $subitem . "\r";
-		$item = mysqli_fetch_assoc($item);
-		//echo (var_dump($item));
-		//echo($item["UID"]);
-		foreach($item as $subitem){
-			//$users = $users . $subitem . "\n";
-			echo($subitem);
-		}
-	}
+	var_dump($list);
+	var_dump($list["UID"]);
+	//foreach ($list as $item){
+	//	//echo (var_dump($item));
+	//	//$users = $users . $subitem . "\r";
+	//	$item = mysqli_fetch_assoc($item);
+	//	//echo (var_dump($item));
+	//	//echo($item["UID"]);
+	//	foreach($item as $subitem){
+	//		//$users = $users . $subitem . "\n";
+	//		echo($subitem);
+	//	}
+	//}
 	return $users;
 }
 
