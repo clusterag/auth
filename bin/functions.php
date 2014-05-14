@@ -131,11 +131,9 @@ function get_user_list(){
 	$query = "SELECT * FROM `users` LIMIT 5;";
 	$list = mysqli_fetch_fields($database->query($query));
 	$users = "";
-	echo(var_dump($list));
 	foreach ($list as $item){
 		//$users = $users . $subitem . "\r";
-		var_dump($item);
-		echo($item);
+		$item = mysqli_fetch_assoc($item);
 	//	foreach($item as $subitem){
 	//		$users = $users . $subitem . "\n";
 	//	}
