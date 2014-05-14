@@ -138,7 +138,8 @@ function get_user_list(){
 		//echo (var_dump($item));
 		//echo($item["UID"]);
 		foreach($item as $subitem){
-			$users = $users . $subitem . "\n";
+			//$users = $users . $subitem . "\n";
+			echo($subitem);
 		}
 	}
 	return $users;
