@@ -13,7 +13,7 @@ if (login() && is_admin()) {
 		else {
 			set_teacher($username, False);
 		}
-		echo(make_html(True, "Benutzer erfolgreich ge&auml;ndert." . file_get_contents($edit_user_template_path)));
+		echo(make_html(True, "Benutzer \"" . $_POST["username"] . "\" erfolgreich ge&auml;ndert." . file_get_contents($edit_user_template_path)));
 	}
 	elseif ($_POST["username"]){
 		echo(make_html(True, "Benutzer \"" . $_POST["username"] . "\" existiert nicht." . file_get_contents($edit_user_template_path)));
