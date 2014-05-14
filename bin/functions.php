@@ -129,10 +129,9 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 function get_user_list(){
 	$database = db_connect();
 	$query = "SELECT * FROM `users` LIMIT 5;";
-	$list = $database->query($query);
+	$list = mysqli_fetch_assoc($database->query($query));
 	$users = "";
 	foreach ($list as $item){
-		$item = mysqli_fetch_assoc($item)["UID"];
 		$users = $users . $subitem . "\r";
 		//foreach($item as $subitem){
 		//	$users = $users . $subitem . "\n";
