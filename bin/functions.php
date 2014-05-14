@@ -129,6 +129,7 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 function get_user_list(){
 	$database = db_connect();
 	$query = "SELECT * FROM `users` LIMIT 5;";
+	$result = $database->query($query);
 	//$list = mysqli_fetch_assoc($database->query($query));
 	//$users = "";
 	//var_dump($list["UID"]);
@@ -145,7 +146,7 @@ function get_user_list(){
 	//	}
 	//}
 
-	while ($row = mysqli_fetch_assoc($database->query($query))) {
+	while ($row = mysqli_fetch_assoc($result)) {
         echo(var_dump($row));
     }
 
