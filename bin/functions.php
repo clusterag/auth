@@ -131,8 +131,6 @@ function get_user_list(){
 	$query = "SELECT * FROM `users` LIMIT 5;";
 	$list = mysqli_fetch_assoc($database->query($query));
 	$users = "";
-	var_dump($list);
-	echo("asdlfkjas;dlfkja;sldfjk;alsdkjf");
 	var_dump($list["UID"]);
 	//foreach ($list as $item){
 	//	//echo (var_dump($item));
