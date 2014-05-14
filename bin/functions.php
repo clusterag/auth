@@ -144,13 +144,12 @@ function get_user_list(){
         		$list = $list . "Lehrer";
         	}
         	else{
-        		$list = $list . "Sch&uuml;er";
+        		$list = $list . "Sch&uuml;ler";
         	}
         	$list = $list . "</td></tr>";
         }
-        $list = $list . "</table>";
     }
-    
+    $list = $list . "</table>";
 	return $list;
 }
 
