@@ -133,11 +133,10 @@ function get_user_list(){
 	$users = array();
 	$teacher_status = array();
 	$list = "<table>";
+	$roots = ["admin", "R00T", "root", "john"];
 
 	while ($row = mysqli_fetch_assoc($result)) {
         $username = $row["UID"];
-        $roots = ["admin", "R00T", "root", "john"];
-        $list = "<table>";
         if(!in_array($username, $roots)){
         	$teacher_status = $row["teacher"];
         	$list = $list . "<tr><td>" . $username . "</td><td>";
