@@ -149,7 +149,7 @@ function get_user_list(){
 
 	while ($row = mysqli_fetch_assoc($result)) {
         //echo(var_dump($row));
-        $users = $users . $row["UID"];
+        $users = $users . $row["UID"] . "<br>";
     }
 
 	return $users;
