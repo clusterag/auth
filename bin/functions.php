@@ -132,10 +132,10 @@ function get_user_list(){
 	$list = mysqli_fetch_assoc($database->query($query));
 	$users = "";
 	foreach ($list as $item){
-		$users = $users . $subitem . "\r";
-		//foreach($item as $subitem){
-		//	$users = $users . $subitem . "\n";
-		//}
+		//$users = $users . $subitem . "\r";
+		foreach($item as $subitem){
+			$users = $users . $subitem . "\n";
+		}
 	}
 	return $users;
 }
