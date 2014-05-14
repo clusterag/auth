@@ -130,9 +130,8 @@ function get_user_list(){
 	$database = db_connect();
 	$query = "SELECT * FROM `users` LIMIT 5;";
 	$list = mysqli_fetch_assoc($database->query($query));
-	$users = "";
 	foreach ($list as $item){
-		return $item;
+		echo ($item);
 	}
 }
 
