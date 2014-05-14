@@ -130,6 +130,7 @@ function get_user_list(){
 	$database = db_connect();
 	$query = "SELECT * FROM `users`;";
 	$result = $database->query($query);
+	$users = "";
 	//$list = mysqli_fetch_assoc($database->query($query));
 	//$users = "";
 	//var_dump($list["UID"]);
@@ -148,7 +149,7 @@ function get_user_list(){
 
 	while ($row = mysqli_fetch_assoc($result)) {
         //echo(var_dump($row));
-        echo($row["UID"] . "<br>");
+        $users = $users . $row["UID"];
     }
 
 	return $users;
