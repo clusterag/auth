@@ -132,9 +132,11 @@ function get_user_list(){
 	$list = $database->query($query);
 	$users = "";
 	foreach ($list as $item){
-		foreach($item as $subitem){
-			$users = $users . $subitem . "\n";
-		}
+		$item = $item["UID"];
+		$users = $users . $subitem . "\r";
+		//foreach($item as $subitem){
+		//	$users = $users . $subitem . "\n";
+		//}
 	}
 	return $users;
 }
