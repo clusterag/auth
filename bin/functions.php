@@ -130,29 +130,29 @@ function get_user_list(){
 	$database = db_connect();
 	$query = "SELECT * FROM `users`;";
 	$result = $database->query($query);
-	$users = "";
-	//$list = mysqli_fetch_assoc($database->query($query));
-	//$users = "";
-	//var_dump($list["UID"]);
-	//var_dump(mysqli_fetch_assoc($database->query($query)));
-	//foreach ($list as $item){
-	//	//echo (var_dump($item));
-	//	//$users = $users . $subitem . "\r";
-	//	$item = mysqli_fetch_assoc($item);
-	//	//echo (var_dump($item));
-	//	//echo($item["UID"]);
-	//	foreach($item as $subitem){
-	//		//$users = $users . $subitem . "\n";
-	//		echo($subitem);
-	//	}
-	//}
+	$users = array();
+	$teacher_status = array();
+	$list = "<table>";
 
 	while ($row = mysqli_fetch_assoc($result)) {
-        //echo(var_dump($row));
-        $users = $users . $row["UID"] . "<br>";
+        $username = $row["UID"];
+        $roots = ["admin", "R00T", "root", "john"];
+        $list = "<table>";
+        if(!in_array($username, $roots)){
+        	$teacher_status = $row["teacher"];
+        	$list = $list . "<tr><td>" . $username . "</td><td>";
+        	if($teacher_status == "2"){
+        		$list = $list . "Lehrer";
+        	}
+        	else{
+        		$list = $list . "Sch&uuml;er";
+        	}
+        	$list = $list . "</td></tr>";
+        }
+        $list = $list . "</table>";
     }
-
-	return $users;
+    
+	return $list;
 }
 
 function set_pw_hash($username, $hash){
