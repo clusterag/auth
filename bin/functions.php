@@ -129,21 +129,22 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 function get_user_list(){
 	$database = db_connect();
 	$query = "SELECT * FROM `users` LIMIT 1;";
-	$list = mysqli_fetch_assoc(mysqli_fetch_fields($database->query($query)));
+	$list = mysqli_fetch_assoc($database->query($query));
 	$users = "";
 	var_dump($list);
-	//var_dump($list["UID"]);
-	//foreach ($list as $item){
-	//	//echo (var_dump($item));
-	//	//$users = $users . $subitem . "\r";
-	//	$item = mysqli_fetch_assoc($item);
-	//	//echo (var_dump($item));
-	//	//echo($item["UID"]);
-	//	foreach($item as $subitem){
-	//		//$users = $users . $subitem . "\n";
-	//		echo($subitem);
-	//	}
-	//}
+	echo("asdlfkjas;dlfkja;sldfjk;alsdkjf");
+	var_dump($list["UID"]);
+	foreach ($list as $item){
+		//echo (var_dump($item));
+		//$users = $users . $subitem . "\r";
+		$item = mysqli_fetch_assoc($item);
+		//echo (var_dump($item));
+		//echo($item["UID"]);
+		foreach($item as $subitem){
+			//$users = $users . $subitem . "\n";
+			echo($subitem);
+		}
+	}
 	return $users;
 }
 
