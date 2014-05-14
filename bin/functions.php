@@ -135,11 +135,11 @@ function get_user_list(){
 		//echo (var_dump($item));
 		//$users = $users . $subitem . "\r";
 		$item = mysqli_fetch_assoc($item);
-		echo (var_dump($item));
-		echo($item["UID"]);
-	//	foreach($item as $subitem){
-	//		$users = $users . $subitem . "\n";
-	//	}
+		//echo (var_dump($item));
+		//echo($item["UID"]);
+		foreach($item as $subitem){
+			$users = $users . $subitem . "\n";
+		}
 	}
 	return $users;
 }
