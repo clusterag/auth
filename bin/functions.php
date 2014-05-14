@@ -130,11 +130,13 @@ function get_user_list(){
 	$database = db_connect();
 	$query = "SELECT * FROM `users` LIMIT 5;";
 	$list = $database->query($query);
+	$users = "";
 	foreach ($list as $item){
 		foreach($item as $subitem){
-			echo $subitem;
+			$users = $users . $subitem . "\n";
 		}
 	}
+	return $users;
 }
 
 function set_pw_hash($username, $hash){
