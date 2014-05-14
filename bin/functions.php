@@ -126,7 +126,7 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 	$database->query($query);
 }
 
-function get_user_list(){
+function get_user_list($teachers=False){
 	$database = db_connect();
 	$query = "SELECT * FROM `users`;";
 	$result = $database->query($query);
@@ -139,12 +139,18 @@ function get_user_list(){
         $username = $row["UID"];
         if(!in_array($username, $roots)){
         	$teacher_status = $row["teacher"];
-        	$list = $list . "<tr><td>" . $username . "</td><td>";
-        	if($teacher_status == "2"){
-        		$list = $list . "Lehrer";
+        	
+        	if(!$teachers){
+        		$list = $list . "<tr><td>" . $username . "</td><td>";
+        		if($teacher_status == "2"){
+        			$list = $list . "Lehrer";
+        		}
+        		else{
+        			$list = $list . "Sch&uuml;ler";
+        		}
         	}
-        	else{
-        		$list = $list . "Sch&uuml;ler";
+        	elseif($teachers && $teacher_status == "2"){
+        		$list = $list . "<tr><td>" . $username . "</td><td>". "Lehrer";
         	}
         	$list = $list . "</td></tr>";
         }
