@@ -132,6 +132,7 @@ function get_user_list(){
 	$list = mysqli_fetch_assoc($database->query($query));
 	$users = "";
 	var_dump($list["UID"]);
+	var_dump(mysqli_fetch_assoc($database->query($query)));
 	//foreach ($list as $item){
 	//	//echo (var_dump($item));
 	//	//$users = $users . $subitem . "\r";
