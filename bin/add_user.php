@@ -9,6 +9,7 @@ $mob = $_POST["mob"];  //MonthOfBirth
 $yob = $_POST["yob"];  //YearOfBirth
 
 $date = strtotime($yob . "-" . $mob . "-" . $dob);
+var_dump($date);
 echo $date;
 
 if (login() && is_admin()) {
