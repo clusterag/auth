@@ -8,7 +8,8 @@ $dob = $_POST["dob"];  //DayOfBirth
 $mob = $_POST["mob"];  //MonthOfBirth
 $yob = $_POST["yob"];  //YearOfBirth
 
-echo $date = strtotime($yob . "-" . $mob . "-" . $dob);
+$date = strtotime($yob . "-" . $mob . "-" . $dob);
+echo $date;
 
 if (login() && is_admin()) {
 	if ($_POST["firstname"] && $_POST["lastname"] && $_POST["dob"] && $_POST["mob"] &&$_POST["yob"]){
