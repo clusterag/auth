@@ -10,7 +10,7 @@ $yob = $_POST["yob"];  //YearOfBirth
 
 $date = strtotime($yob . "-" . $mob . "-" . $dob);
 var_dump($date);
-echo $date;
+echo strval($date);
 
 if (login() && is_admin()) {
 	if ($_POST["firstname"] && $_POST["lastname"] && $_POST["dob"] && $_POST["mob"] &&$_POST["yob"]){
