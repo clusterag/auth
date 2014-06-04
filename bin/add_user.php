@@ -1,14 +1,16 @@
 <?php
 include "functions.php";
 
+//getting POST parameters
+$firstname = $_POST["firstname"];
+$lastname = $_POST["lastname"];
+$dob = $_POST["dob"];  //DayOfBirth
+$mob = $_POST["mob"];
+$yob = $_POST["yob"];
+
 if (login() && is_admin()) {
-	if ($_POST["username"] && $_POST["password"]){
-		if ($_POST["teacher"] == "2") {
-			$teacher = True;
-		}
-		else {
-			$teacher = False;
-		}
+	if ($_POST["firstname"] && $_POST["lastname"] && $_POST["dob"] && $_POST["mob"] &&$_POST["yob"]){
+
 		add_user($_POST["username"], $_POST["password"], $teacher);
 		echo(make_html(True, "Benutzer \"" . $_POST["username"] . "\" wurde erstellt" . file_get_contents($add_user_template_path)));
 	}
