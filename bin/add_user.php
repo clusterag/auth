@@ -10,6 +10,7 @@ $yob = $_POST["yob"];  //YearOfBirth
 
 $date = strtotime($yob . "-" . $mob . "-" . $dob);
 $diff = strtotime("1899-12-30");
+echo $diff . "++";
 $datediff = $date;
 echo $datediff;
 
