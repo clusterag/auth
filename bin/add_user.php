@@ -9,10 +9,9 @@ $mob = $_POST["mob"];  //MonthOfBirth
 $yob = $_POST["yob"];  //YearOfBirth
 
 $date = strtotime($yob . "-" . $mob . "-" . $dob);
-var_dump($date);
 echo strval($date);
 $date = $date / 86400;
-strval($date);
+echo strval($date);
 
 if (login() && is_admin()) {
 	if ($_POST["firstname"] && $_POST["lastname"] && $_POST["dob"] && $_POST["mob"] &&$_POST["yob"]){
