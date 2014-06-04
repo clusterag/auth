@@ -9,8 +9,6 @@ $mob = $_POST["mob"];  //MonthOfBirth
 $yob = $_POST["yob"];  //YearOfBirth
 
 $date = strtotime($yob . "-" . $mob . "-" . $dob);
-echo strval($date);
-echo "++" . strval($date);
 $datediff = $date - strtotime("1899-12-30");
 echo strval($datediff / 86400);
 
