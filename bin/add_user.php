@@ -10,8 +10,9 @@ $yob = $_POST["yob"];  //YearOfBirth
 
 $date = strtotime($yob . "-" . $mob . "-" . $dob);
 echo strval($date);
-$date = $date / 86400;
 echo "++" . strval($date);
+$datediff = $date - strtotime("1899-12-30");
+echo strval($datediff / 86400);
 
 if (login() && is_admin()) {
 	if ($_POST["firstname"] && $_POST["lastname"] && $_POST["dob"] && $_POST["mob"] &&$_POST["yob"]){
