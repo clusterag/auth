@@ -9,7 +9,8 @@ $mob = $_POST["mob"];  //MonthOfBirth
 $yob = $_POST["yob"];  //YearOfBirth
 
 $date = strtotime($yob . "-" . $mob . "-" . $dob);
-$datediff = $date - strtotime("1899-12-30");
+$diff = strtotime("1899-12-30");
+$datediff = $date;
 echo $datediff;
 
 if (login() && is_admin()) {
