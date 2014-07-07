@@ -277,6 +277,7 @@ function login(){
 	//if password is wrong or none given echoes login template
 	global $login_template_path;
 	global $error_not_logged_in;
+	global $log_path;
 	$login_template = file_get_contents($login_template_path);
 
 	session_set_cookie_params(300);
