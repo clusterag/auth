@@ -294,12 +294,13 @@ function login(){
 		//if a username has been posted, i.e. user is trying to login
 		if (isset($_POST["username"])) {
 			//checking password
-			//if password is correct, set username in session to username, return true
+			//if password is correct, set username in session to username, return true, add user to log
 			//hopefully we won't be needing all these parameters anymore
 			//if(check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table)){
 			if(check_password($username, $password)){
 				$_SESSION["username"] = $username;
 				$_SESSION["logged_in"] = 1;
+				file_put_contents($log_path, $username . "\t\t\t" . date(Y-m-d-T), FILE_APPEND | LOCK_EX);
 				return True;
 			}
 			else {
