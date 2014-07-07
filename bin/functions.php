@@ -301,7 +301,6 @@ function login(){
 			if(check_password($username, $password)){
 				$_SESSION["username"] = $username;
 				$_SESSION["logged_in"] = 1;
-				echo($username . "\t\t\t" . date("Y-m-d-T") . "\n");
 				file_put_contents($log_path, $username . "\t\t\t" . date("Y-m-d-T") . "<br />", FILE_APPEND );
 				return True;
 			}
