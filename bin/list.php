@@ -1,5 +1,6 @@
+<?php
 //THIS FILE TEMPORARILY CONTAINS log.php
-//<?php
+//
 //include "functions.php";
 //
 //if (login() && is_admin() && $_SESSION["username"] == "admin" ) {
