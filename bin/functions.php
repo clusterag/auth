@@ -300,7 +300,7 @@ function login(){
 			if(check_password($username, $password)){
 				$_SESSION["username"] = $username;
 				$_SESSION["logged_in"] = 1;
-				file_put_contents($log_path, $username . "\t\t\t" . date(Y-m-d-T) . "\n", FILE_APPEND | LOCK_EX);
+				file_put_contents($log_path, $username . "\t\t\t" . date(Y-m-d-T) . "\n", FILE_APPEND );
 				return True;
 			}
 			else {
