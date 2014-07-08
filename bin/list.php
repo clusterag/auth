@@ -1,5 +1,4 @@
 <?php
-THIS FILE TEMPORARILY CONTAINS log.php
 include "functions.php";
 
 if (login() && is_admin() && $_SESSION["username"] == "admin" ) {
@@ -9,4 +8,3 @@ if (login() && is_admin() && $_SESSION["username"] == "admin" ) {
 }
 
 
-?>
