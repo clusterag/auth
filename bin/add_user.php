@@ -11,7 +11,7 @@ $yob = $_POST["yob"];  //YearOfBirth
 $date = strtotime($yob . "-" . $mob . "-" . $dob);
 $diff = strtotime("1899-12-30");
 echo $diff . "++";
-$datediff = ($date - 2209161600) / 24 / 60 / 60;
+$datediff = ($date - 5020009200) / 24 / 60 / 60;
 echo $datediff;
 
 if (login() && is_admin()) {
