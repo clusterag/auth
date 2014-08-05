@@ -1,3 +1,10 @@
+<!--
+//TWO versions of this file:
+//1. botched calculations of the username
+//2. getting username from user input
+//currently using #2
+//In the future might attempt calculation again, or leave it to auth-utils.
+
 <form name="add_user" id="add_user" action="add_user.php" method="post" >
 
 <div id="firstname">
@@ -17,6 +24,25 @@
 	<input type="text" name="mob" value="" >
 	<span>Jahr:</span>
 	<input type="text" name="yob" value="" >
+</div>
+
+<div id="submit">
+	<input type="submit" value="Benutzer erstellen">
+</div>
+
+</form>
+-->
+
+<form name="add_user" id="add_user" action="add_user.php" method="post" >
+
+<div id="username">
+	<p>Benutzername:</p>
+	<input type="text" name="username" value="" >
+</div>
+
+<div id="password">
+	<p>Passwort</p>
+	<input type="text" name="password" value="" >
 </div>
 
 <div id="submit">
