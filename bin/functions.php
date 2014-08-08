@@ -257,14 +257,7 @@ function session_logged_in(){
 	}
 }
 
-//hopefully we won't be needing all these parameters anymore
-//function check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table){
 function check_password($username, $password){
-	//all this should be replaced by new function get_pw_hash
-	//$database = new mysqli($db_host, $db_user, $db_password, $db_database);  //connect to database
-	//$hash_query = "SELECT PW FROM " . $table . " WHERE UID = '" . $username . "'";
-	//$hash = mysqli_fetch_assoc($database->query($hash_query))["PW"];
-
 	$hash = get_pw_hash($username);
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
