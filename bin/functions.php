@@ -289,8 +289,6 @@ function login(){
 		if (isset($_POST["username"])) {
 			//checking password
 			//if password is correct, set username in session to username, return true, add user to log
-			//hopefully we won't be needing all these parameters anymore
-			//if(check_password($username, $password, $db_host, $db_user, $db_password, $db_database, $table)){
 			if(check_password($username, $password)){
 				$_SESSION["username"] = $username;
 				$_SESSION["logged_in"] = 1;
