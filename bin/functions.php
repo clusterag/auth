@@ -102,8 +102,6 @@ function make_html($logged_in, $content=""){
 
 //database functions
 
-//hopefully we won't be needing these parameters
-//function db_connect($db_host, $db_user, $db_password, $db_database){
 function db_connect(){
 	global $db_host;
 	global $db_user;
@@ -121,9 +119,6 @@ function db_get_field($database, $table, $get_field, $where_field, $where_value)
 	$where_value = $database->real_escape_string($where_value);
 	$query = "SELECT " . $get_field . " FROM " . $table . " WHERE " . $where_field . " = '" . $where_value . "'";
 	$get_value = mysqli_fetch_assoc($database->query($query))[$get_field];
-	//if (!$get_value){
-	//	echo "Table creation failed: (" . $database->errno . ") " . $database->error;
-	//}
 	return $get_value;
 }
 
@@ -149,9 +144,11 @@ function get_user_list($teachers=False){
         $username = $row["UID"];
         if(!in_array($username, $roots)){
         	$teacher_status = $row["teacher"];
+        	$firstname = $row["firstname"];
+        	$lastname = $row["lastname"];
         	
         	if(!$teachers){
-        		$list = $list . "<tr><td>" . $username . "</td><td>";
+        		$list = $list . "<tr><td>" . $username . "</td><td>" . $firstname . "</td><td>" . $lastname . "</td><td>";
         		if($teacher_status == "2"){
         			$list = $list . "Lehrer";
         		}

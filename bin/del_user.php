@@ -18,6 +18,5 @@ if (login() && is_admin() ) {
 
 }
 
-echo(is_user($username));
 
 ?>
