@@ -238,7 +238,7 @@ function add_user($firstname, $lastname, $username, $password, $is_teacher){
 	else {
 		$teacher = "1";
 	}
-	$query = "INSERT INTO `users` ( `UID` , `PW` , `teacher` , `admin`, `firstname`, `lastname` ) VALUES ( '" . $username . "', '" . $hash . "', '" . $teacher . "', '1' " . "', '" . $firstname . "', ' " . $lastname . " ' );";
+	$query = "INSERT INTO users ( `UID` , `firstname` , `lastname` , `PW` , `teacher` , `admin` ) VALUES ('" . $username . "', '" . $firstname . "', '" . $lastname . "', '" . $hash . "', '" . $teacher . "', '1');";
 	$database->query($query);
 }
 
