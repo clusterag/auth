@@ -143,6 +143,12 @@ function show_user($username){
 		$database = db_connect();
 		$row = db_get_field($database, "users", "*", "UID", $username, True);
 		$user = "Benutzername:		" . $row["UID"] . "<br/> Vorname:		" . $row["firstname"] . "<br/> Nachname		" . $row["lastname"];
+		if ($row["teacher"] == 2){
+			$user = $user . "<br/> Lehrer:		Ja";
+		}
+		else {
+			$user = $user . "<br/> Lehrer:		Nein";
+		}
 		return $user;
 	}
 	else {
