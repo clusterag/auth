@@ -118,7 +118,12 @@ function db_get_field($database, $table, $get_field, $where_field, $where_value)
 	//escape $where_value. all other parameters are not user defined.
 	$where_value = $database->real_escape_string($where_value);
 	$query = "SELECT " . $get_field . " FROM " . $table . " WHERE " . $where_field . " = '" . $where_value . "'";
-	$get_value = mysqli_fetch_assoc($database->query($query))[$get_field];
+	if ($get_field == "*"){
+		$get_value = mysqli_fetch_assoc($database->query($query));
+	}
+	else {
+		$get_value = mysqli_fetch_assoc($database->query($query))[$get_field];
+	}
 	return $get_value;
 }
 
@@ -129,6 +134,20 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 	$set_value = $database->real_escape_string($set_value);
 	$query = "UPDATE " . $table . " SET " . $set_field . " = '" . $set_value . "' WHERE " . $where_field . " = '" . $where_value . "'";
 	$database->query($query);
+}
+
+function show_user($username){
+	
+	$roots = ["admin", "R00T", "root", "john"];
+	if (!in_array($username, $roots)){
+		$database = db_connect();
+		$row = db_get_field($database, "users", "*", "UID", $username, True);
+		$user = "Benutzername:		" . $row["UID"] . "<br/> Vorname:		" . $row["firstname"] . "<br/> Nachname		" . $row["lastname"];
+		return $user;
+	}
+	else {
+		return "Benutzername " . $username . " nicht gefunden.";
+	}
 }
 
 function get_user_list($teachers=False){
