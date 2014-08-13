@@ -157,7 +157,7 @@ function get_user_list($teachers=False){
         		}
         	}
         	elseif($teachers && $teacher_status == "2"){
-        		$list = $list . "<tr><td>" . $username . "</td><td>". "Lehrer";
+        		$list = $list . "<tr><td>" . $username . "</td><td>" . $firstname . "</td><td>" . $lastname . "</td><td>" . "Lehrer";
         	}
         	$list = $list . "</td></tr>";
         }
