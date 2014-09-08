@@ -136,6 +136,12 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 	$database->query($query);
 }
 
+function users_wipe(){
+	$database = db_connect();
+	$query = "DELETE FROM users WHERE class != ''";
+	database->query($query);
+}
+
 function show_user($username){
 	
 	$roots = ["admin", "R00T", "root", "john"];
@@ -290,7 +296,6 @@ function check_password($username, $password){
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
 }
-
 
 function login(){
 	//checks if the session is logged in
