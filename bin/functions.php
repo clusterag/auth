@@ -139,7 +139,7 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 function users_wipe(){
 	$database = db_connect();
 	$query = "DELETE FROM users WHERE class != ''";
-	database->query($query);
+	$database->query($query);
 }
 
 function show_user($username){
