@@ -82,11 +82,11 @@ function make_html($logged_in, $content=""){
 
 	if ($logged_in && is_admin() ){		
 		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
-		$header_right = build_header_item($username, "mainnavitem", "right") . build_header_item(build_link("Benutzerverwaltung", "admin.php"), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
+		$header_right = build_header_item(get_user_full_name($username), "mainnavitem", "right") . build_header_item(build_link("Benutzerverwaltung", "admin.php"), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
 	}
 	elseif ($logged_in) {
 		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
-		$header_right = build_header_item($username, "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
+		$header_right = build_header_item(get_user_full_name($username), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
 	}
 
 	if ($header_left){
@@ -140,6 +140,14 @@ function users_wipe(){
 	$database = db_connect();
 	$query = "DELETE FROM users WHERE class != ''";
 	$database->query($query);
+}
+
+function get_user_full_name($username){
+	$database = db_connect();
+	$firstname = db_get_field($database, "users", "firstname", "UID", $username);
+	$lastname = db_get_field($database, "users", "lastname", "UID", $username);
+	return $firstname . " " . $lastname;
+	;
 }
 
 function show_user_link($username, $parameter, $password = False){
