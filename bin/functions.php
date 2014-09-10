@@ -262,17 +262,19 @@ function is_user($username){
 	}
 }
 
-function add_user($firstname, $lastname, $username, $password, $is_teacher){
+function add_user($firstname, $lastname, $username, $password, $is_teacher, $class){
 	$database = db_connect();
 	$hash = password_hash($password, PASSWORD_BCRYPT);
 
 	if ($is_teacher){
 		$teacher = "2";
+		$query = "INSERT INTO users ( `UID` , `firstname` , `lastname` , `PW` , `teacher` , `admin` ) VALUES ('" . $username . "', '" . $firstname . "', '" . $lastname . "', '" . $hash . "', '" . $teacher . "', '1');";
 	}
 	else {
 		$teacher = "1";
+		$query = "INSERT INTO users ( `UID` , `firstname` , `lastname` , `PW` , `teacher` , `admin`, `class` ) VALUES ('" . $username . "', '" . $firstname . "', '" . $lastname . "', '" . $hash . "', '" . $teacher . "', '1', '" . $class . "');";
 	}
-	$query = "INSERT INTO users ( `UID` , `firstname` , `lastname` , `PW` , `teacher` , `admin` ) VALUES ('" . $username . "', '" . $firstname . "', '" . $lastname . "', '" . $hash . "', '" . $teacher . "', '1');";
+	
 	$database->query($query);
 }
 
