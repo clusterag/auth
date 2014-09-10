@@ -148,7 +148,7 @@ function show_user($username){
 	if (!in_array($username, $roots)){
 		$database = db_connect();
 		$row = db_get_field($database, "users", "*", "UID", $username, True);
-		$user = "Benutzername:		" . $row["UID"] . "<br/> Vorname:		" . $row["firstname"] . "<br/> Nachname		" . $row["lastname"];
+		$user = "Benutzername:		" . $row["UID"] . "<br/> Vorname:		" . $row["firstname"] . "<br/> Nachname		" . $row["lastname"] . "<br/> Klasse		" . $row["class"];
 		if ($row["teacher"] == 2){
 			$user = $user . "<br/> Lehrer:		Ja";
 		}
