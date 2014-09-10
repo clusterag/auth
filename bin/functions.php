@@ -165,7 +165,7 @@ function show_user($username){
 		else {
 			$user = $user . "<br/> Lehrer:		Nein";
 		}
-		$user = $user . show_user_link($username, "password", True);
+		$user = $user . "\n" . show_user_link($username, "password", True);
 		return $user;
 	}
 	else {
