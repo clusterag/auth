@@ -306,7 +306,7 @@ function login(){
 	global $log_path;
 	$login_template = file_get_contents($login_template_path);
 
-	session_set_cookie_params(300);
+	session_set_cookie_params(900);
 	session_start();
 	//if session is logged in return True
 	if(session_logged_in()){
