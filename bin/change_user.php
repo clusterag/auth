@@ -7,7 +7,10 @@ if (login() && is_admin()) {
 		$parameter = $_POST["parameter"];
 		echo(make_html(True, change_user_template($username, $parameter)));
 	}
-	elseif ($_POST["username"] && is_user($_POST["username"]) && $_POST["value"]) {
+	elseif ($_POST["username"] && is_user($_POST["username"]) && $_POST["value"] && $_POST["parameter"]) {
+		$username = $_POST["username"];
+		$parameter = $_POST["parameter"];
+		$value = $_POST["value"];
 		edit_user($username, $parameter, $value);
 		echo(make_html(True, show_user($username)));
 	}
