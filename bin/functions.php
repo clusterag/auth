@@ -230,7 +230,6 @@ function edit_user($username, $key, $value){
 	if ($key != "password"){
 		$database = db_connect();
 		db_set_field($database, "users", $key, $value, "UID", $username);
-		echo($username . $key . $value);
 	}
 	else {
 		set_password($username, $value);
