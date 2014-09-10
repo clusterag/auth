@@ -243,7 +243,7 @@ function change_user_template($username, $parameter){
 						"lastname" => "den Nachnamen",
 						"class" => "die Klasse");
 	$message = "Sie ver&auml;ndern " . $translate[$parameter] . " f&uuml;r den Benutzer " . $username . ".\n";
-	$form = "<form name=\"" . $parameter . "\" id=\"" . $parameter . "\" action=\"change_user.php\" method=\"post\" > \n <input type=\"text\" name=\"" . $parameter ."\" value=\"\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
+	$form = "<form name=\"" . $parameter . "\" id=\"" . $parameter . "\" action=\"change_user.php\" method=\"post\" > \n <input type=\"text\" name=\"\" value=\"" . $parameter ."\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
 	return $message . $form;
 }
 
