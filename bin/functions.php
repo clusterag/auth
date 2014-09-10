@@ -142,8 +142,8 @@ function users_wipe(){
 	$database->query($query);
 }
 
-function show_user_link($parameter){
-	return "<form name=\"change_user\" id=\"change_user\" action=\"change_user.php\" method=\"post\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
+function show_user_link($username, $parameter){
+	return "<form name=\"change_user\" id=\"change_user\" action=\"change_user.php\" method=\"post\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" ><input type=\"hidden\" name=\"username\" value=\"" . $username . "\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
 }
 
 function show_user($username){
@@ -152,7 +152,7 @@ function show_user($username){
 	if (!in_array($username, $roots)){
 		$database = db_connect();
 		$row = db_get_field($database, "users", "*", "UID", $username, True);
-		$user = "Benutzername:		" . $row["UID"] . "<br/> Vorname:		" . $row["firstname"] . show_user_link("firstname") . "<br/> Nachname		" . $row["lastname"] . show_user_link("lastname") . "<br/> Klasse		" . $row["class"] . show_user_link("class");
+		$user = "Benutzername:		" . $row["UID"] . "<br/> Vorname:		" . $row["firstname"] . show_user_link($username, "firstname") . "<br/> Nachname:		" . $row["lastname"] . show_user_link($username, "lastname") . "<br/> Klasse:		" . $row["class"] . show_user_link($username, "class");
 		if ($row["teacher"] == 2){
 			$user = $user . "<br/> Lehrer:		Ja";
 		}
