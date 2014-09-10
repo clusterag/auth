@@ -81,12 +81,12 @@ function make_html($logged_in, $content=""){
 	$template = insert_into_str($template, "<!--CONTENT-->", $content);
 
 	if ($logged_in && is_admin() ){		
-		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
-		$header_right = build_header_item(get_user_full_name($username), "mainnavitem", "right") . build_header_item(build_link("Benutzerverwaltung", "admin.php"), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
+		$header_left = build_header_item(build_link("Heute", "heute"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen"), "mainnavitem", "left");
+		$header_right = build_header_item(get_user_full_name($username), "mainnavitem", "right") . build_header_item(build_link("Benutzerverwaltung", "admin"), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout"), "mainnavitem", "right");
 	}
 	elseif ($logged_in) {
-		$header_left = build_header_item(build_link("Heute", "heute.php"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen.php"), "mainnavitem", "left");
-		$header_right = build_header_item(get_user_full_name($username), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings.php"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout.php"), "mainnavitem", "right");
+		$header_left = build_header_item(build_link("Heute", "heute"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen"), "mainnavitem", "left");
+		$header_right = build_header_item(get_user_full_name($username), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout"), "mainnavitem", "right");
 	}
 
 	if ($header_left){
@@ -152,10 +152,10 @@ function get_user_full_name($username){
 
 function show_user_link($username, $parameter, $password = False){
 	if ($password){
-		return "<form name=\"change_user\" id=\"change_user\" action=\"change_user.php\" method=\"post\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" ><input type=\"hidden\" name=\"username\" value=\"" . $username . "\" ><input type=\"submit\" value=\"Passwort &auml;ndern\"></form>";
+		return "<form name=\"change_user\" id=\"change_user\" action=\"change_user\" method=\"post\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" ><input type=\"hidden\" name=\"username\" value=\"" . $username . "\" ><input type=\"submit\" value=\"Passwort &auml;ndern\"></form>";
 	}
 	else {
-		return "<form name=\"change_user\" id=\"change_user\" action=\"change_user.php\" method=\"post\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" ><input type=\"hidden\" name=\"username\" value=\"" . $username . "\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
+		return "<form name=\"change_user\" id=\"change_user\" action=\"change_user\" method=\"post\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" ><input type=\"hidden\" name=\"username\" value=\"" . $username . "\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
 	}
 	
 }
@@ -257,7 +257,7 @@ function change_user_template($username, $parameter){
 						"lastname" => "den Nachnamen",
 						"class" => "die Klasse");
 	$message = "Sie ver&auml;ndern " . $translate[$parameter] . " f&uuml;r den Benutzer " . $username . ".\n";
-	$form = "<form name=\"" . $parameter . "\" id=\"" . $parameter . "\" action=\"change_user.php\" method=\"post\" ><input type=\"hidden\" name=\"username\" value=\"" . $username . "\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" > \n <input type=\"text\" name=\"value\" value=\"\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
+	$form = "<form name=\"" . $parameter . "\" id=\"" . $parameter . "\" action=\"change_user\" method=\"post\" ><input type=\"hidden\" name=\"username\" value=\"" . $username . "\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" > \n <input type=\"text\" name=\"value\" value=\"\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
 	return $message . $form;
 }
 
