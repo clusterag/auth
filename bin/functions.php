@@ -142,13 +142,17 @@ function users_wipe(){
 	$database->query($query);
 }
 
+function show_user_link($parameter){
+	return "<form name=\"change_user\" id=\"change_user\" action=\"change_user.php\" method=\"post\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" ><input type=\"submit\" value=\"&Auml;ndern\"></form>";
+}
+
 function show_user($username){
 	
 	$roots = ["admin", "R00T", "root", "john"];
 	if (!in_array($username, $roots)){
 		$database = db_connect();
 		$row = db_get_field($database, "users", "*", "UID", $username, True);
-		$user = "Benutzername:		" . $row["UID"] . "<br/> Vorname:		" . $row["firstname"] . "<br/> Nachname		" . $row["lastname"] . "<br/> Klasse		" . $row["class"];
+		$user = "Benutzername:		" . $row["UID"] . "<br/> Vorname:		" . $row["firstname"] . show_user_link("firstname") . "<br/> Nachname		" . $row["lastname"] . show_user_link("lastname") . "<br/> Klasse		" . $row["class"] . show_user_link("class");
 		if ($row["teacher"] == 2){
 			$user = $user . "<br/> Lehrer:		Ja";
 		}
@@ -223,9 +227,24 @@ function set_teacher($username, $is_teacher){
 }
 
 function edit_user($username, $key, $value){
-	$database = db_connect();
-	db_set_field($database, "users", $key, $value, "UID", $username);
-	echo($username . $key . $value);
+	if ($key != "password"){
+		$database = db_connect();
+		db_set_field($database, "users", $key, $value, "UID", $username);
+		echo($username . $key . $value);
+	}
+	else {
+		set_password($username, $value);
+	}
+}
+
+function change_user_template($username, $parameter){
+	$translate = array( "password" => "das Passwort",
+						"firstname" => "den Vornamen",
+						"lastname" => "den Nachnamen",
+						"class" => "die Klasse");
+	$message = "Sie ver&auml;ndern " . $translate[$parameter] . " f&uuml;r den Benutzer " . $username . ".\n";
+	$form = "<form name=\"" . $parameter . "\" id=\"" . $parameter . "\" action=\"change_user.php\" method=\"post\" > \n <input type=\"text\" name=\"" . $parameter ."\" value=\"\" ></form>";
+	return $message . $form;
 }
 
 function is_admin(){
