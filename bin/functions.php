@@ -142,6 +142,11 @@ function users_wipe(){
 	$database->query($query);
 }
 
+function make_admin($username){
+	$database = db_connect();
+	db_set_field($database, "users", "admin", "2", "UID", $username);
+}
+
 function get_user_full_name($username){
 	$database = db_connect();
 	$firstname = db_get_field($database, "users", "firstname", "UID", $username);
