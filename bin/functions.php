@@ -111,6 +111,7 @@ function db_connect(){
 	if ($database->connect_errno) {
     	echo "Failed to connect to MySQL: (" . $databse->connect_errno . ") " . $database->connect_error;
 	}
+	$database->set_charset("utf8");
 	return $database;
 }
 
