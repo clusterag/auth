@@ -202,7 +202,10 @@ function get_user_list($teachers=False){
 	if($teachers){
 		$list = "<table>";
 	}
-	$list = "<form name=\"make_admin\" id=\"make_admin\" action=\"list\" method=\"post\" ><div id=\"username\"><p>Benutzername:</p><input type=\"text\" name=\"username\" value=\"\" ></div><div id=\"admin\"><p>Adminstatus (1 oder 2):</p><input type=\"text\" name=\"admin\" value=\"\" ></div><div id=\"submit\"><input type=\"submit\" value=\"Status &Auml;ndern\"></div></form><br/><table>";
+	else{
+		$list = "<form name=\"make_admin\" id=\"make_admin\" action=\"list\" method=\"post\" ><div id=\"username\"><p>Benutzername:</p><input type=\"text\" name=\"username\" value=\"\" ></div><div id=\"admin\"><p>Adminstatus (1 oder 2):</p><input type=\"text\" name=\"admin\" value=\"\" ></div><div id=\"submit\"><input type=\"submit\" value=\"Status &Auml;ndern\"></div></form><br/><table>";
+	}
+	
 
 	while ($row = mysqli_fetch_assoc($result)) {
         $username = $row["UID"];
