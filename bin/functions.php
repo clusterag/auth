@@ -142,9 +142,15 @@ function users_wipe(){
 	$database->query($query);
 }
 
-function make_admin($username){
+function make_admin($username, $add){
 	$database = db_connect();
-	db_set_field($database, "users", "admin", "2", "UID", $username);
+	if ($add){
+		db_set_field($database, "users", "admin", "2", "UID", $username);
+	}
+	else {
+		db_set_field($database, "users", "admin", "1", "UID", $username);
+	}
+	
 }
 
 function get_user_full_name($username){
@@ -192,8 +198,9 @@ function get_user_list($teachers=False){
 	$result = $database->query($query);
 	$users = array();
 	$teacher_status = array();
-	$list = "<table>";
 	$roots = ["admin", "R00T", "root", "john"];
+	
+	$list = "<form name="make_admin" id="make_admin" action="list" method="post" ><div id="username"><p>Benutzername:</p><input type="text" name="username" value="" ></div><div id="admin"><p>Adminstatus (1 oder 2):</p><input type="text" name="admin" value="" ></div><div id="submit"><input type="submit" value="Status &Auml;ndern"></div></form>>br/><table>";
 
 	while ($row = mysqli_fetch_assoc($result)) {
         $username = $row["UID"];
