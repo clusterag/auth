@@ -217,7 +217,7 @@ function get_user_list($teachers=False){
         	$class = $row["class"];
         	
         	if(!$teachers){
-        		$list = $list . "<tr><td>" . $username . "</td><td>" . $firstname . "</td><td>" . $lastname . "</td><td>" . "</td><td>" . $lastname;
+        		$list = $list . "<tr><td>" . $username . "</td><td>" . $firstname . "</td><td>" . $lastname . "</td><td>" . $class . "</td><td>";
         		if($teacher_status == "2"){
         			$list = $list . "Lehrer";
         		}
