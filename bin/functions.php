@@ -337,7 +337,7 @@ function del_user($username){
 }
 
 function search_user($lastname){
-	$teachers=False
+	$teachers=False;
 	$database = db_connect();
 	$query = "SELECT * FROM `users` WHERE `lastname` = '" . $lastname . "'";
 	$result = $database->query($query);
