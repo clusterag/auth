@@ -20,7 +20,6 @@ function gen_passwd(){
 }
 
 function insert_into_str($string, $place, $insert){
-	// $place must be unique!
 	$around = explode($place, $string);
 	$return = $around[0] . $insert;
 	for ($i=1; $i < count($around); $i++) { 
