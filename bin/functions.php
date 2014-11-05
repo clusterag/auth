@@ -336,6 +336,49 @@ function del_user($username){
 	$database->query($query);
 }
 
+function search_user($lastname){
+	$teachers=False
+	$database = db_connect();
+	$query = "SELECT * FROM `users` WHERE `lastname` = '" . $lastname . "'";
+	$result = $database->query($query);
+	$users = array();
+	$teacher_status = array();
+	$roots = ["admin", "R00T", "root", "john"];
+	if($teachers){
+		$list = "<table>";
+	}
+	else{
+		$list = "<form name=\"make_admin\" id=\"make_admin\" action=\"list\" method=\"post\" ><div id=\"username\"><p>Benutzername:</p><input type=\"text\" name=\"username\" value=\"\" ></div><div id=\"admin\"><p>Adminstatus (1 oder 2):</p><input type=\"text\" name=\"admin\" value=\"\" ></div><div id=\"submit\"><input type=\"submit\" value=\"Status &Auml;ndern\"></div></form><br/><table>";
+	}
+	
+
+	while ($row = mysqli_fetch_assoc($result)) {
+        $username = $row["UID"];
+        if(!in_array($username, $roots)){
+        	$teacher_status = $row["teacher"];
+        	$firstname = $row["firstname"];
+        	$lastname = $row["lastname"];
+        	$class = $row["class"];
+        	
+        	if(!$teachers){
+        		$list = $list . "<tr><td>" . $username . "</td><td>" . $firstname . "</td><td>" . $lastname . "</td><td>" . $class . "</td><td>";
+        		if($teacher_status == "2"){
+        			$list = $list . "Lehrer";
+        		}
+        		else{
+        			$list = $list . "Sch&uuml;ler";
+        		}
+        	}
+        	elseif($teachers && $teacher_status == "2"){
+        		$list = $list . "<tr><td>" . $username . "</td><td>" . $firstname . "</td><td>" . $lastname . "</td><td>" . "Lehrer";
+        	}
+        	$list = $list . "</td></tr>";
+        }
+    }
+    $list = $list . "</table>";
+	return $list;
+}
+
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
