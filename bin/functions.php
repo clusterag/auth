@@ -343,7 +343,9 @@ function search_user($lastname){
 	$result = $database->query($query);
 	$users = array();
 	$teacher_status = array();
-	$roots = ["admin", "R00T", "root", "john"];	
+	$roots = ["admin", "R00T", "root", "john"];
+
+	$list = "<table>";
 
 	while ($row = mysqli_fetch_assoc($result)) {
         $username = $row["UID"];
