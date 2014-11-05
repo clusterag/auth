@@ -22,7 +22,11 @@ function gen_passwd(){
 function insert_into_str($string, $place, $insert){
 	// $place must be unique!
 	$around = explode($place, $string);
-	return $around[0] . $insert . $around[1];
+	$return = $around[0] . $insert;
+	for ($i=1; $i < count($around); $i++) { 
+		$return = $return . $around[$i];
+	}
+	return $return;
 }
 
 function build_link($text, $href, $class="", $id=""){
