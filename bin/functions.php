@@ -2,14 +2,6 @@
 
 $conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/auth/conf.php";
 include $conf;
-
-//TODO:
-//maybe define database parameters as globals?
-//define and ENFORCE guideline for escaping SQL queries.
-
-//GUIDELINES:
-
-
 function gen_passwd(){
 	$password = "";
 	$letters = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F");
@@ -296,16 +288,6 @@ function is_admin(){
 
 function is_user($username){
 	$database = db_connect();
-	
-	//DOESN'T WORK
-	//if (db_get_field($database, "users", "*", "UID", $username)){
-	//	echo db_get_field($database, "users", "*", "UID", $username);
-	//	return True;
-	//}
-	//else {
-	//	return False;
-	//}
-
 	// this always returns True
 	$query = "SELECT * FROM `users` WHERE `UID`='" . $username . "';";
 	$result = $database->query($query);
@@ -432,9 +414,7 @@ function login(){
 		else {
 			echo(make_html(False, $login_template));
 			return False;
-			
 		};
 	};
 }
-
  ?>
