@@ -1,6 +1,5 @@
 <?php
 include "functions.php";
-
 if (login() && is_admin()) {
 	if ($_POST["username"] && is_user($_POST["username"]) && !$_POST["value"]){
 		$username = $_POST["username"];
@@ -15,6 +14,4 @@ if (login() && is_admin()) {
 		echo(make_html(True, show_user($username)));
 	}
 }
-
-
 ?>
