@@ -1,7 +1,10 @@
 <?php 
 
+//import configuration from conf.php
 $conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/auth/conf.php";
 include $conf;
+//possibly never used
+//generates a password 8 chars long, only hex digits.
 function gen_passwd(){
 	$password = "";
 	$letters = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F");
@@ -11,6 +14,7 @@ function gen_passwd(){
 	return $password;
 }
 
+//insert $insert into $string at $place
 function insert_into_str($string, $place, $insert){
 	$around = explode($place, $string);
 	$return = $around[0] . $insert;
@@ -20,6 +24,7 @@ function insert_into_str($string, $place, $insert){
 	return $return;
 }
 
+//build an <a> element 
 function build_link($text, $href, $class="", $id=""){
 	$link = "<a href=\"" . $href . "\" ";
 	if ($class){
