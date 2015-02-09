@@ -1,4 +1,7 @@
 <?php 
+//THIS FILE CONTAINS:
+//all PHP functions used in the auth project
+//TODO: change configuration to be an array with string keys, make it accessible from every function (superglobal?)
 
 //import configuration from conf.php
 $conf = "/kunden/homepages/34/d446716986/htdocs/vertretungsplan_backend/auth/conf.php";
@@ -24,7 +27,9 @@ function insert_into_str($string, $place, $insert){
 	return $return;
 }
 
-//build an <a> element 
+//HTML functions
+
+//build an HTML <a> element 
 function build_link($text, $href, $class="", $id=""){
 	$link = "<a href=\"" . $href . "\" ";
 	if ($class){
@@ -38,6 +43,8 @@ function build_link($text, $href, $class="", $id=""){
 	return $link;
 }
 
+//build an HTML <li> element
+//TODO: rename to build_li
 function build_ul_item($text, $class="", $id = ""){
 	$item = "<li " ;
 	if ($class){
@@ -50,6 +57,7 @@ function build_ul_item($text, $class="", $id = ""){
 	return $item;
 }
 
+//build an HTML <ul> block from an array containing <li> elements
 function build_ul($items, $class="", $id=""){
 	$header = "<ul ";
 	if ($class){
@@ -67,28 +75,35 @@ function build_ul($items, $class="", $id=""){
 	return $header;
 }
 
+//TODO: remove this cleanly
 function build_header_item($text, $class, $align){
 	return build_ul_item($text, $class, $align);
 }
 
-function make_html($logged_in, $content=""){
+//build the HTML that is given out to the user
+function make_html($logged_in, $content=""){\
+	//getting $template_path from conf
 	global $template_path;
+	//reading the template file
 	$template = file_get_contents($template_path);
 	$header_left = "";
 	$header_right = "";
+	//getting username from session
 	$username = $_SESSION["username"];
-
+	//inserting $content into the template
 	$template = insert_into_str($template, "<!--CONTENT-->", $content);
-
+	//build the header with the link "Benutzerverwaltung" for admins...
 	if ($logged_in && is_admin() ){		
 		$header_left = build_header_item(build_link("Heute", "heute"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen"), "mainnavitem", "left");
 		$header_right = build_header_item(get_user_full_name($username), "mainnavitem", "right") . build_header_item(build_link("Benutzerverwaltung", "admin"), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout"), "mainnavitem", "right");
 	}
+	//... and without it for regular users
 	elseif ($logged_in) {
 		$header_left = build_header_item(build_link("Heute", "heute"), "mainnavitem", "left") . build_header_item(build_link("Morgen", "morgen"), "mainnavitem", "left");
 		$header_right = build_header_item(get_user_full_name($username), "mainnavitem", "right") . build_header_item(build_link("Passwort ändern", "settings"), "mainnavitem", "right") . build_header_item(build_link("Abmelden", "logout"), "mainnavitem", "right");
 	}
-
+	//TODO:revamp this
+	//currently it will never run, probably a relict from an older code version, need to see if it's still being used.
 	if ($header_left){
 		$template = insert_into_str($template, "<!--HEADER_LEFT-->", $header_left);
 	}
@@ -102,6 +117,7 @@ function make_html($logged_in, $content=""){
 
 //database functions
 
+//create the connection to the database
 function db_connect(){
 	global $db_host;
 	global $db_user;
@@ -115,6 +131,7 @@ function db_connect(){
 	return $database;
 }
 
+//get a field from the database
 function db_get_field($database, $table, $get_field, $where_field, $where_value){
 	//escape $where_value. all other parameters are not user defined.
 	$where_value = $database->real_escape_string($where_value);
@@ -128,6 +145,8 @@ function db_get_field($database, $table, $get_field, $where_field, $where_value)
 	return $get_value;
 }
 
+//TODO:error handling
+//set a field in the database
 function db_set_field($database, $table, $set_field, $set_value, $where_field, $where_value){
 	//WARNING: THIS FUNCTION DOES NOT RETURN ERRORS
 	//escape $where_value.
@@ -137,12 +156,17 @@ function db_set_field($database, $table, $set_field, $set_value, $where_field, $
 	$database->query($query);
 }
 
+//TODO:rename this to students_wipe
+//delete all students
 function users_wipe(){
 	$database = db_connect();
 	$query = "DELETE FROM users WHERE class != ''";
 	$database->query($query);
 }
 
+//TODO: discuss: is this really neccessary? extra step of creating new admin in the database might be beneficial
+//for security reasons as well as to prevent an unneccessary influx of admins
+//make a user an admin
 function make_admin($username, $add){
 	$database = db_connect();
 	if ($add){
@@ -154,6 +178,9 @@ function make_admin($username, $add){
 	
 }
 
+//TODO: think about that semicolon in the last line really hard and get rid of it
+//(not possible right now because I'm not sure if this code is running live)
+//get a users full name
 function get_user_full_name($username){
 	$database = db_connect();
 	$firstname = db_get_field($database, "users", "firstname", "UID", $username);
@@ -162,6 +189,8 @@ function get_user_full_name($username){
 	;
 }
 
+//TODO: come up with a better name, maybe think about the implementation
+//generates the links "Passwort aendern" and "Aendern"
 function show_user_link($username, $parameter, $password = False){
 	if ($password){
 		return "<form name=\"change_user\" id=\"change_user\" action=\"change_user\" method=\"post\" ><input type=\"hidden\" name=\"parameter\" value=\"" . $parameter . "\" ><input type=\"hidden\" name=\"username\" value=\"" . $username . "\" ><input type=\"submit\" value=\"Passwort &auml;ndern\"></form>";
@@ -172,8 +201,10 @@ function show_user_link($username, $parameter, $password = False){
 	
 }
 
+//TODO:check if user exists properly (does not work)
+//show a users details
 function show_user($username){
-	
+	//TODO: hide this
 	$roots = ["admin", "R00T", "root", "john"];
 	if (!in_array($username, $roots)){
 		$database = db_connect();
@@ -193,6 +224,8 @@ function show_user($username){
 	}
 }
 
+//generate a list of all users
+//flag $teachers=True returns a list of only teachers
 function get_user_list($teachers=False){
 	$database = db_connect();
 	$query = "SELECT * FROM `users`;";
@@ -235,21 +268,26 @@ function get_user_list($teachers=False){
 	return $list;
 }
 
+//set the password hash for the specified user
 function set_pw_hash($username, $hash){
 	$database = db_connect();
 	db_set_field($database, "users", "PW", $hash, "UID", $username);
 }
 
+//get a specified user's password hash
 function get_pw_hash($username){
 	$database = db_connect();
 	$hash = db_get_field($database, "users", "PW", "UID", $username);
 	return $hash;
 }
 
+//set a user's password
+//contains encryption
 function set_password($username, $password){
 	set_pw_hash($username, password_hash($password, PASSWORD_BCRYPT));
 }
 
+//set a user to be a teacher
 function set_teacher($username, $is_teacher){
 	$database = db_connect();
 	if ($is_teacher) {
@@ -260,6 +298,7 @@ function set_teacher($username, $is_teacher){
 	}
 }
 
+//change some aspect of a user
 function edit_user($username, $key, $value){
 	if ($key != "password"){
 		$database = db_connect();
@@ -270,6 +309,7 @@ function edit_user($username, $key, $value){
 	}
 }
 
+//generate the form used to modify a user's data
 function change_user_template($username, $parameter){
 	$translate = array( "password" => "das Passwort",
 						"firstname" => "den Vornamen",
@@ -280,6 +320,7 @@ function change_user_template($username, $parameter){
 	return $message . $form;
 }
 
+//check if the current user is an admin
 function is_admin(){
 	$username = $_SESSION["username"];
 	$database = db_connect();
@@ -291,6 +332,7 @@ function is_admin(){
 	}
 }
 
+//check if the specified user exists
 function is_user($username){
 	$database = db_connect();
 	// this always returns True
@@ -304,6 +346,7 @@ function is_user($username){
 	}
 }
 
+//add a user to the database
 function add_user($firstname, $lastname, $username, $password, $is_teacher, $class){
 	$database = db_connect();
 	$hash = password_hash($password, PASSWORD_BCRYPT);
@@ -320,12 +363,16 @@ function add_user($firstname, $lastname, $username, $password, $is_teacher, $cla
 	$database->query($query);
 }
 
+//delete a user from the database
 function del_user($username){
 	$database = db_connect();
 	$query = "DELETE FROM `users` WHERE `UID` = '" . $username . "'";
 	$database->query($query);
 }
 
+//TODO: make this work for first name, class ,etc... as well
+//look for a user by  last name
+//return a list of users with that (exact!) last name
 function search_user($lastname){
 	$teachers=False;
 	$database = db_connect();
@@ -364,6 +411,7 @@ function search_user($lastname){
 	return $list;
 }
 
+//check if the user is logged in in the session
 function session_logged_in(){
 	if ($_SESSION["logged_in"] == 1){
 		return True;
@@ -373,16 +421,17 @@ function session_logged_in(){
 	}
 }
 
+//check if a specified password matches the specified username
 function check_password($username, $password){
 	$hash = get_pw_hash($username);
 	$logged_in = password_verify($password, $hash);
 	return $logged_in;
 }
 
+//checks if the session is logged in
+//if it is not, gets POST params and checks password
+//if password is wrong or none given echoes login template
 function login(){
-	//checks if the session is logged in
-	//if it is not, gets POST params and checks password
-	//if password is wrong or none given echoes login template
 	global $login_template_path;
 	global $error_not_logged_in;
 	global $log_path;
