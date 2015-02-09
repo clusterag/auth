@@ -1,6 +1,5 @@
 <?php
 include "functions.php";
-
 if (login()){
 	if ($_POST["password_1"]){
 		if (!(check_password($_SESSION["username"], $_POST["password"]))){
@@ -18,6 +17,4 @@ if (login()){
 		echo (make_html(True, file_get_contents($settings_template_path)));
 	}
 }
-
-
 ?>
